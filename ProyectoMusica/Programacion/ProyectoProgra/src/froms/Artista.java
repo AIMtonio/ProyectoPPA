@@ -28,18 +28,18 @@ public class Artista extends JFrame {
 
 	public Artista() {
 		panel1.setLayout(null);
-//imagen
+		//imagen
 		JLabel lbl0 = new JLabel();
 		lbl0.setIcon(new ImageIcon("src/froms/img.png"));
 		lbl0.setBounds(10, 10, 450, 500);
 		panel1.add(lbl0);
-//Titulo		
+		//Titulo		
 		Font fuente = new Font("Arial", 0, 20);
 		JLabel lblT = new JLabel("SECCIÓN DE ARTISTAS ");
 		lblT.setFont(fuente);
 		lblT.setBounds(250, 30, 348, 20);
 		panel1.add(lblT);
-// una etiqueta en el panel de la pestaña 1
+		// una etiqueta en el panel de la pestaña 1
 		JLabel lbl1 = new JLabel("Nombre: ");
 		lbl1.setBounds(250, 100, 348, 20);
 		panel1.add(lbl1);
