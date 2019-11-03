@@ -32,10 +32,10 @@ public class Principal extends JFrame {
 		contentPane.add(panelDePestanas);
 		
 //Agregamos paneles a Frame
-		Artista artista = new Artista();
+		PanelArtista artista = new PanelArtista();
 		panelDePestanas.addTab("Artistas", null, artista.panel1, null);
 
-		Disquera disq = new Disquera();
+		PanelDisquera disq = new PanelDisquera();
 		panelDePestanas.addTab("Disqueras", null, disq.panel2, null);
 
 		Album obj1 = new Album();

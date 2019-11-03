@@ -11,7 +11,7 @@ public class ConexionPostgres {
 	        try{
 	        	String clave="123456";
 	    		String usuario="postgres";
-	    		String url="jdbc:postgresql://localhost:5432/MusicalLife";
+	    		String url="jdbc:postgresql://localhost:5432/Musicallife";
 	            Class.forName("org.postgresql.Driver");
 	            con=DriverManager.getConnection(url,usuario,clave);
 	            return con;
