@@ -290,30 +290,37 @@ public class PanelArtista extends JFrame {
 		// Evento registrar
 		ActionListener registro = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// Validar si existe
-				nombreArtistico = tfNartistico.getText();
-				Artista validar = new Artista(nombreArtistico);
-				validar.consultarIdArtista();
-				id_artista = validar.getId_artista();
-				if (id_artista == 0) {
-					nombreArtista = tfArtista.getText();
-					apellidosArtista = tfApellidos.getText();
+				if(tfArtista.getText().equalsIgnoreCase("") || 
+				   tfApellidos.getText().equalsIgnoreCase("") || 
+				   tfNartistico.getText().equalsIgnoreCase("")) {
+				   JOptionPane.showMessageDialog(null, "Algun campo esta vacio");
+				}else {
+					// Validar si existe
 					nombreArtistico = tfNartistico.getText();
-					if (rbtn1.isSelected()) {
-						sexo = "M";
-					} else if (rbtn2.isSelected()) {
-						sexo = "F";
+					Artista validar = new Artista(nombreArtistico);
+					validar.consultarIdArtista();
+					id_artista = validar.getId_artista();
+					if (id_artista == 0) {
+						nombreArtista = tfArtista.getText();
+						apellidosArtista = tfApellidos.getText();
+						nombreArtistico = tfNartistico.getText();
+						if (rbtn1.isSelected()) {
+							sexo = "M";
+						} else if (rbtn2.isSelected()) {
+							sexo = "F";
+						}
+						nacionalidad = (String) combo.getSelectedItem();
+						fecha_nacimiento = "1998-07-15";
+						Artista registro = new Artista(nombreArtista, apellidosArtista, nombreArtistico, nacionalidad, sexo,
+								fecha_nacimiento);
+						registro.registrarArtista();
+						limpiarDatos();
+					} else {
+						//JOptionPane.showMessageDialog(null, "El nombre artistico del artista ya existe");
+						JOptionPane.showMessageDialog(null, "El nombre artistico ya existe");
 					}
-					nacionalidad = (String) combo.getSelectedItem();
-					fecha_nacimiento = "1998-07-15";
-					Artista registro = new Artista(nombreArtista, apellidosArtista, nombreArtistico, nacionalidad, sexo,
-							fecha_nacimiento);
-					registro.registrarArtista();
-					limpiarDatos();
-				} else {
-					//JOptionPane.showMessageDialog(null, "El nombre artistico del artista ya existe");
-					JOptionPane.showMessageDialog(null, "El nombre artistico ya existe");
 				}
+				
 			}
 		};
 		// Activacion del evento registro
@@ -336,6 +343,10 @@ public class PanelArtista extends JFrame {
 					nacionalidad = (String) combo.getSelectedItem();
 					Artista actualizacion = new Artista(id_artista, nombreArtista, apellidosArtista, nombreArtistico,
 							nacionalidad);
+					actualizacion.setN_artistico(nombreArtistico);
+					JOptionPane.showMessageDialog(null, "n artistico: " + nombreArtistico);
+					actualizacion.consultarIdArtista();
+					id_artista = actualizacion.getId_artista();
 					actualizacion.modificarArtista();
 					limpiarCombo();
 					limpiarDatos();
@@ -411,7 +422,7 @@ public class PanelArtista extends JFrame {
 				}
 			}
 		};
-		// Activacion del evento registro
+		// Activacion del evento eliminar
 		btnEliminar.addActionListener(eliminar);
 
 	}

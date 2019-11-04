@@ -17,8 +17,8 @@ import clases.Disquera;
 
 public class PanelDisquera {
 	static JPanel panel2 = new JPanel();
-	
-	//Componentes
+
+	// Componentes
 	JTextField tfNombre = new JTextField("");
 	JTextField tfDireccion = new JTextField("");
 	JTextField tfTelefono = new JTextField("");
@@ -26,13 +26,13 @@ public class PanelDisquera {
 	JComboBox dia = new JComboBox();
 	JComboBox mes = new JComboBox();
 	JComboBox anio = new JComboBox();
-	
-	//Variables
+
+	// Variables
 	int id_disquera;
 	String nombre_d, direccion, correo;
 	String fecha_creacion;
 	long telefono;
-	
+
 	public PanelDisquera() {
 		Font fuente = new Font("Arial", 0, 20);
 		panel2.setLayout(null);
@@ -42,43 +42,42 @@ public class PanelDisquera {
 		lbl6.setIcon(new ImageIcon("src/img/img.png"));
 		lbl6.setBounds(10, 10, 450, 500);
 		panel2.add(lbl6);
-		
+
 		// Titulo
 		JLabel lblT2 = new JLabel("SECCIÓN DE DISQUERAS ");
 		lblT2.setFont(fuente);
 		lblT2.setBounds(250, 30, 348, 20);
 		panel2.add(lblT2);
 		// una etiqueta en el panel de la pestaña 1
-		
-		//Nombre
+
+		// Nombre
 		JLabel lbl7 = new JLabel("Nombre Disquera: ");
 		lbl7.setBounds(250, 100, 348, 20);
 		panel2.add(lbl7);
 		tfNombre.setBounds(380, 100, 150, 22);
 		panel2.add(tfNombre);
 
-		//Direccion
+		// Direccion
 		JLabel lbl8 = new JLabel("Dirección: ");
 		lbl8.setBounds(250, 130, 348, 20);
 		panel2.add(lbl8);
 		tfDireccion.setBounds(380, 130, 150, 22);
 		panel2.add(tfDireccion);
-		
-		
+
 		JLabel lbl9 = new JLabel("Teléfono: ");
 		lbl9.setBounds(250, 160, 348, 20);
 		panel2.add(lbl9);
 		tfTelefono.setBounds(380, 160, 150, 22);
 		panel2.add(tfTelefono);
 
-		//Correo
+		// Correo
 		JLabel lbl10 = new JLabel("Correo: ");
 		lbl10.setBounds(250, 190, 348, 20);
 		panel2.add(lbl10);
 		tfCorreo.setBounds(380, 190, 150, 22);
 		panel2.add(tfCorreo);
-		
-		//Fecha
+
+		// Fecha
 		JLabel lbl11 = new JLabel("Fecha de creación: ");
 		lbl11.setBounds(250, 220, 348, 20);
 		panel2.add(lbl11);
@@ -86,22 +85,60 @@ public class PanelDisquera {
 		lbld.setBounds(250, 250, 348, 20);
 		panel2.add(lbld);
 
-		
 		dia.addItem("Seleccionar");
 		dia.addItem("1");
 		dia.addItem("2");
 		dia.addItem("3");
+		dia.addItem("4");
+		dia.addItem("5");
+		dia.addItem("6");
+		dia.addItem("7");
+		dia.addItem("8");
+		dia.addItem("9");
+		dia.addItem("10");
+		dia.addItem("11");
+		dia.addItem("12");
+		dia.addItem("13");
+		dia.addItem("14");
+		dia.addItem("15");
+		dia.addItem("16");
+		dia.addItem("17");
+		dia.addItem("18");
+		dia.addItem("19");
+		dia.addItem("20");
+		dia.addItem("21");
+		dia.addItem("22");
+		dia.addItem("23");
+		dia.addItem("23");
+		dia.addItem("24");
+		dia.addItem("25");
+		dia.addItem("26");
+		dia.addItem("27");
+		dia.addItem("28");
+		dia.addItem("29");
+		dia.addItem("30");
+		dia.addItem("31");
 		dia.setBounds(250, 270, 100, 22);
 		panel2.add(dia);
 
 		JLabel lblm = new JLabel("Mes: ");
 		lblm.setBounds(400, 250, 348, 20);
 		panel2.add(lblm);
-		
+
 		mes.addItem("Seleccionar");
 		mes.addItem("01");
 		mes.addItem("02");
 		mes.addItem("03");
+		mes.addItem("04");
+		mes.addItem("05");
+		mes.addItem("06");
+		mes.addItem("07");
+		mes.addItem("08");
+		mes.addItem("09");
+		mes.addItem("10");
+		mes.addItem("11");
+		mes.addItem("12");
+		
 		mes.setBounds(400, 270, 100, 22);
 		panel2.add(mes);
 
@@ -109,53 +146,73 @@ public class PanelDisquera {
 		lbla.setBounds(550, 250, 348, 20);
 		panel2.add(lbla);
 
-		
 		anio.addItem("Seleccionar");
 		anio.addItem("2019");
 		anio.addItem("2020");
 		anio.addItem("2021");
+		anio.addItem("2022");
 		anio.setBounds(550, 270, 100, 22);
 		panel2.add(anio);
 
 		JButton btnRegistrar = new JButton("Registrar");
 		btnRegistrar.setBounds(550, 100, 100, 22);
 		panel2.add(btnRegistrar);
-		
+
 		// Evento Registrar
-				ActionListener registrar = new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						nombre_d = tfNombre.getText();
-						direccion = tfDireccion.getText();
-						telefono = Long.parseLong(tfTelefono.getText());
-						correo = tfCorreo.getText();
-						fecha_creacion =(String)
-								anio.getSelectedItem() + "-" +
-								mes.getSelectedItem() + "-" +
-								dia.getSelectedItem();
-						
-				Disquera validar=new Disquera(nombre_d);
-				validar.consultarIdDisquera();
-				id_disquera = validar.getId_disquera();
-				if(id_disquera==0) {
-					Disquera registro=new Disquera(nombre_d, direccion, correo, fecha_creacion, telefono);
-					registro.registrarDisquera();
-					limpiarDatos();
+		ActionListener registrar = new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//Validacion de campos vacios
+				if(tfNombre.getText().equalsIgnoreCase("") || 
+				   tfDireccion.getText().equalsIgnoreCase("") ||
+				   tfTelefono.getText().equalsIgnoreCase("") ||
+				   tfCorreo.getText().equalsIgnoreCase("")) {
+					JOptionPane.showMessageDialog(null, "Falta algun campo por llenar");
 				}else {
-					JOptionPane.showMessageDialog(null, "El nombre de la disquera ya existe");
+					//Proceso de registro
+					nombre_d = tfNombre.getText();
+					direccion = tfDireccion.getText();
+					telefono = Long.parseLong(tfTelefono.getText());
+					correo = tfCorreo.getText();
+					fecha_creacion = (String) anio.getSelectedItem() + "-" + mes.getSelectedItem() + "-"
+							+ dia.getSelectedItem();
+
+					Disquera validar = new Disquera(nombre_d);
+					validar.consultarIdDisquera();
+					id_disquera = validar.getId_disquera();
+					if (id_disquera == 0) {
+						Disquera registro = new Disquera(nombre_d, direccion, correo, fecha_creacion, telefono);
+						registro.registrarDisquera();
+						limpiarDatos();
+					} else {
+						JOptionPane.showMessageDialog(null, "El nombre de la disquera ya existe");
+					}
 				}	
 			}
-				};
-				// Activacion del evento registro
-				btnRegistrar.addActionListener(registrar);
+		};
+		// Activacion del evento registro
+		btnRegistrar.addActionListener(registrar);
 
 		JButton btnEditar = new JButton("Editar");
 		btnEditar.setBounds(550, 130, 100, 22);
 		panel2.add(btnEditar);
-		
+
 		// Evento modificar
 		ActionListener modificar = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				// setVisible(false);
+				if (tfNombre.getText().equalsIgnoreCase("")) {
+					JOptionPane.showMessageDialog(null, "Consulta disquera para modificar");
+				} else {
+					nombre_d = tfNombre.getText();
+					direccion = tfDireccion.getText();
+					correo = tfCorreo.getText();
+					telefono = Long.parseLong(tfTelefono.getText());
+					Disquera editar = new Disquera(nombre_d, direccion, correo, telefono);
+					editar.consultarIdDisquera();
+					id_disquera = editar.getId_disquera();
+					editar.modificarDisquera();
+					limpiarDatos();
+				}
 			}
 		};
 		// Activacion del evento modificar
@@ -165,48 +222,77 @@ public class PanelDisquera {
 		btnConsultar.setBounds(550, 160, 100, 22);
 		panel2.add(btnConsultar);
 		// Evento consultar
-				ActionListener consultar = new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-					nombre_d = JOptionPane.showInputDialog("Ingresa el nombre de la disquera");
-					Disquera consulta=new Disquera(nombre_d);
-					consulta.consultarIdDisquera();
-					id_disquera = consulta.getId_disquera();
-					if(id_disquera==0) {
-						JOptionPane.showMessageDialog(null, "Disquera no encontrada");
-					}else {
-						consulta.consultarDisquera();
-						tfNombre.setText(consulta.getNombre_d());
-						tfDireccion.setText(consulta.getDireccion());
-						telefono = consulta.getTelefono();
-						String aux = String.valueOf(telefono);
-						tfTelefono.setText(aux);
-						tfCorreo.setText(consulta.getCorreo());
-						//Agregar fecha
-					}
-					}
-				};
-				// Activacion del evento modificar
-				btnConsultar.addActionListener(consultar);
+		ActionListener consultar = new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				nombre_d = JOptionPane.showInputDialog("Ingresa el nombre de la disquera");
+				Disquera consulta = new Disquera(nombre_d);
+				consulta.consultarIdDisquera();
+				id_disquera = consulta.getId_disquera();
+				if (id_disquera == 0) {
+					JOptionPane.showMessageDialog(null, "Disquera no encontrada");
+				} else {
+					consulta.consultarDisquera();
+					tfNombre.setText(consulta.getNombre_d());
+					tfDireccion.setText(consulta.getDireccion());
+					telefono = consulta.getTelefono();
+					String aux = String.valueOf(telefono);
+					tfTelefono.setText(aux);
+					tfCorreo.setText(consulta.getCorreo());
+					// Agregar fecha
+				}
+			}
+		};
+		// Activacion del evento modificar
+		btnConsultar.addActionListener(consultar);
 
 		JButton btnEliminar = new JButton("Eliminar");
 		btnEliminar.setBounds(550, 190, 100, 22);
 		panel2.add(btnEliminar);
 		// Evento eliminar
-				ActionListener eliminar = new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						
-					}
-				};
-				// Activacion del evento eliminar
-				btnEliminar.addActionListener(eliminar);
+		ActionListener eliminar = new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (tfNombre.getText().equalsIgnoreCase("")) {
+					JOptionPane.showMessageDialog(null, "Consulta disquera para poder eliminar");
+				} else {
+					nombre_d = tfNombre.getText();
+					Disquera eliminar = new Disquera(nombre_d);
+					eliminar.consultarIdDisquera();
+					id_disquera = eliminar.getId_disquera();
+					if (id_disquera == 0) {
+						JOptionPane.showMessageDialog(null, "No existe la disquera");
+					} else {
+						int v = JOptionPane.showConfirmDialog(null, "Deseas eliminar la disquera?");
+						if (v == 0) {
+							eliminar.eliminarDisquera();
+							limpiarDatos();
+						}
 
+					}
+
+				}
+			}
+		};
+		// Activacion del evento eliminar
+		btnEliminar.addActionListener(eliminar);
+
+		JButton btnLimpiar = new JButton("Limpiar");
+		btnLimpiar.setBounds(550, 220, 100, 22);
+		panel2.add(btnLimpiar);
+		// Evento eliminar
+		ActionListener limpiar = new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				limpiarDatos();
+			}
+		};
+		// Activacion del evento eliminar
+		btnLimpiar.addActionListener(limpiar);
 	}
-	
+
 	public void limpiarDatos() {
 		tfNombre.setText("");
 		tfDireccion.setText("");
 		tfTelefono.setText("");
 		tfCorreo.setText("");
 	}
-	
+
 }

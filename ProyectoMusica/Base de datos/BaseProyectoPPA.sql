@@ -29,7 +29,8 @@ create table album(
 	disquera int,
 	genero varchar(30),
 	duracion time,
-	fecha_lanzamiento date
+	fecha_lanzamiento date,
+	on update cascade on delete cascade
 );
 
 alter table album add foreign key (artista) references artista(id_artista);

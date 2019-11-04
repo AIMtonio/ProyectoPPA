@@ -161,10 +161,6 @@ public class Artista {
         }     
 	}
 	
-	
-	
-	
-	
 	public void eliminarArtista() {
 		try{
             ConexionPostgres objConexion=new ConexionPostgres();

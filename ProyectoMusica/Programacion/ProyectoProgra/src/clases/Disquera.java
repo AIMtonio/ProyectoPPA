@@ -64,6 +64,13 @@ public class Disquera {
 		this.telefono = telefono;
 	}
 	
+	public Disquera(String nombre_d, String direccion, String correo, long telefono) {
+		super();
+		this.nombre_d = nombre_d;
+		this.direccion = direccion;
+		this.correo = correo;
+		this.telefono = telefono;
+	}
 	public Disquera(String nombre_d) {
 		super();
 		this.nombre_d = nombre_d;
@@ -116,6 +123,32 @@ public class Disquera {
         }        
 	}
 
+	public void modificarDisquera() {
+		try{
+            ConexionPostgres objConexion=new ConexionPostgres();
+            Statement st=objConexion.getCon().createStatement();
+			String sql="update disquera set nombre='"+nombre_d+"',"
+					+ " direccion='"+direccion+"', telefono="+telefono+", correo='"+correo+"';";
+			 st.executeUpdate(sql);
+			 JOptionPane.showMessageDialog(null, "Actualización exitoso");
+        }catch(Exception e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error de acción");
+        }     
+	}
+	
+	public void eliminarDisquera() {
+		try{
+            ConexionPostgres objConexion=new ConexionPostgres();
+            Statement st=objConexion.getCon().createStatement();
+			String sql="delete from disquera where id_disquera = "+id_disquera+";";
+			 st.executeUpdate(sql);
+			 JOptionPane.showMessageDialog(null, "Disquera Eliminada");
+        }catch(Exception e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error de acción");
+        }     
+	}
 	
 	
 	
