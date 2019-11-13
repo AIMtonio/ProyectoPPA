@@ -197,5 +197,18 @@ public class Album {
         }        
 	}
 	
+	public void eliminarAlbum() {
+		try{
+            ConexionPostgres objConexion=new ConexionPostgres();
+            Statement st=objConexion.getCon().createStatement();
+			String sql="delete from album where id_album = "+id_album+";";
+			 st.executeUpdate(sql);
+			 JOptionPane.showMessageDialog(null, "Album Eliminado");
+        }catch(Exception e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error de acción");
+        }     
+	}
+	
 	
 }

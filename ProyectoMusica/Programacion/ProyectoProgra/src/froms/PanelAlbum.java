@@ -145,21 +145,27 @@ public class PanelAlbum{
 		// Evento registrar
 				ActionListener registrar = new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						nombre_artista = (String) artistas.getSelectedItem();
-						nombre_disquera = (String) disq.getSelectedItem();
-						Album buscarDatos=new Album(nombre_artista, nombre_disquera);
-						buscarDatos.consultarIdArtista();
-						buscarDatos.consultarIdDisquera();
-						id_art = buscarDatos.getId_art();
-						id_dis = buscarDatos.getId_dis();
-						//Asigar datos
-						nombre_album = tfNombreAlbum.getText();
-						genero = tfGenero.getText();
-						duracion=Float.parseFloat(tfDuracion.getText());
-					Album registro=new Album(id_art, id_dis, genero, duracion, nombre_album);
-					registro.registrarAlbum();
-					limpiarCombos();
-					limparDatos();
+						if(tfNombreAlbum.getText().equalsIgnoreCase("") || 
+						   tfGenero.getText().equalsIgnoreCase("") || 
+						   tfDuracion.getText().equalsIgnoreCase("")) {
+							JOptionPane.showMessageDialog(null, "Falta algun dato por ingresar");
+						}else {
+							nombre_artista = (String) artistas.getSelectedItem();
+							nombre_disquera = (String) disq.getSelectedItem();
+							Album buscarDatos=new Album(nombre_artista, nombre_disquera);
+							buscarDatos.consultarIdArtista();
+							buscarDatos.consultarIdDisquera();
+							id_art = buscarDatos.getId_art();
+							id_dis = buscarDatos.getId_dis();
+							//Asigar datos
+							nombre_album = tfNombreAlbum.getText();
+							genero = tfGenero.getText();
+							duracion=Float.parseFloat(tfDuracion.getText());
+						Album registro=new Album(id_art, id_dis, genero, duracion, nombre_album);
+						registro.registrarAlbum();
+						limpiarCombos();
+						limparDatos();
+						}
 					}
 				};
 				// Activacion del evento registro
@@ -201,8 +207,6 @@ public class PanelAlbum{
 					artistas.addItem(nombre_artista);
 					disq.addItem(nombre_disquera);
 					JOptionPane.showMessageDialog(null, "La fecha de creacion de este album es : " + fecha_lanza);
-					
-					
 				}
 			}
 		};
@@ -216,12 +220,28 @@ public class PanelAlbum{
 		// Evento registrar
 		ActionListener eliminar = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				if(tfNombreAlbum.getText().equalsIgnoreCase("")) {
+					JOptionPane.showMessageDialog(null, "Consulta para poder eliminar");
+				}else {
+					int v = JOptionPane.showConfirmDialog(null, "Deseas eliminar este album?");
+					if (v == 0) {
+						if (id_album == 0) {
+							JOptionPane.showMessageDialog(null, "El artista no existe");
+						} else {
+							nombre_album = tfNombreAlbum.getText();
+							Album eliminar = new Album(nombre_album);
+							eliminar.consultarIdAlbum();
+							id_album = eliminar.getId_album();
+							eliminar.eliminarAlbum();
+							limparDatos();
+						}
+					} else {
+					}
+				}
 			}
 		};
 		// Activacion del evento registro
 		btnEliminar.addActionListener(eliminar);
-	
 	}
 	
 	public void limpiarCombos() {
