@@ -16,9 +16,6 @@ import javax.swing.ButtonGroup;
 import javax.swing.JRadioButton;
 import javax.swing.event.ChangeListener;
 
-import org.freixas.jcalendar.JCalendar;
-import org.freixas.jcalendar.JCalendarCombo;
-
 import clases.Artista;
 
 import java.awt.event.*;
@@ -105,6 +102,7 @@ public class PanelArtista extends JFrame {
 		// Item default
 		combo.addItem("Selecciona");
 		ActionListener radioH = new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				limpiarCombo();
 				combo.addItem("afgano");
@@ -183,6 +181,7 @@ public class PanelArtista extends JFrame {
 		rbtn1.addActionListener(radioH);
 
 		ActionListener radioM = new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				limpiarCombo();
 				combo.addItem("afgana");
@@ -289,6 +288,7 @@ public class PanelArtista extends JFrame {
 
 		// Evento registrar
 		ActionListener registro = new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(tfArtista.getText().equalsIgnoreCase("") || 
 				   tfApellidos.getText().equalsIgnoreCase("") || 
@@ -333,6 +333,7 @@ public class PanelArtista extends JFrame {
 
 		// Evento modificar
 		ActionListener modificar = new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (tfNartistico.getText().equalsIgnoreCase("")) {
 					JOptionPane.showMessageDialog(null, "Consulta artista para poder modificar");
@@ -363,6 +364,7 @@ public class PanelArtista extends JFrame {
 
 		// Evento consultar
 		ActionListener consultar = new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				combo.removeAllItems();
 				nombreArtistico = JOptionPane.showInputDialog("Ingresa el nombre artistico: ");
@@ -398,6 +400,7 @@ public class PanelArtista extends JFrame {
 
 		// Evento eliminar
 		ActionListener eliminar = new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (tfNartistico.getText().equalsIgnoreCase("")) {
 					JOptionPane.showMessageDialog(null, "Consulta artista para poder eliminar");

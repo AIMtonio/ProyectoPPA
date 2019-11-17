@@ -6,7 +6,6 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 
 import conexion.ConexionPostgres;
-import froms.PanelAlbum;
 
 public class Album {
 

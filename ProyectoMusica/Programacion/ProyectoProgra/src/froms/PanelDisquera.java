@@ -12,7 +12,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import clases.Artista;
 import clases.Disquera;
 
 public class PanelDisquera {
@@ -160,6 +159,7 @@ public class PanelDisquera {
 
 		// Evento Registrar
 		ActionListener registrar = new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				//Validacion de campos vacios
 				if(tfNombre.getText().equalsIgnoreCase("") || 
@@ -198,6 +198,7 @@ public class PanelDisquera {
 
 		// Evento modificar
 		ActionListener modificar = new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				// setVisible(false);
 				if (tfNombre.getText().equalsIgnoreCase("")) {
@@ -223,6 +224,7 @@ public class PanelDisquera {
 		panel2.add(btnConsultar);
 		// Evento consultar
 		ActionListener consultar = new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				nombre_d = JOptionPane.showInputDialog("Ingresa el nombre de la disquera");
 				Disquera consulta = new Disquera(nombre_d);
@@ -250,6 +252,7 @@ public class PanelDisquera {
 		panel2.add(btnEliminar);
 		// Evento eliminar
 		ActionListener eliminar = new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (tfNombre.getText().equalsIgnoreCase("")) {
 					JOptionPane.showMessageDialog(null, "Consulta disquera para poder eliminar");
@@ -280,6 +283,7 @@ public class PanelDisquera {
 		panel2.add(btnLimpiar);
 		// Evento eliminar
 		ActionListener limpiar = new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				limpiarDatos();
 			}

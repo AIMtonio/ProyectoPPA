@@ -32,7 +32,8 @@ public class Username extends JFrame{
         super.setSize(300, 140);
         ActionListener listener = new ActionListener(){
 
-            public void actionPerformed(ActionEvent e) {
+            @Override
+			public void actionPerformed(ActionEvent e) {
                 
                 validarUsuario();
             }

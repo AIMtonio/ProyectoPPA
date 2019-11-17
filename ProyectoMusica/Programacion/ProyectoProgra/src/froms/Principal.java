@@ -2,6 +2,7 @@ package froms;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 public class Principal extends JFrame {
@@ -26,23 +27,23 @@ public class Principal extends JFrame {
 		contentPane.setLayout(null);
 
 // se crea el panel de pestañas
-		JTabbedPane panelDePestanas = new JTabbedPane(JTabbedPane.TOP);
+		JTabbedPane panelDePestanas = new JTabbedPane(SwingConstants.TOP);
 // se posiciona en el panel
 		panelDePestanas.setBounds(10, 11, 679, 464);
 		contentPane.add(panelDePestanas);
 		
 //Agregamos paneles a Frame
 		PanelArtista artista = new PanelArtista();
-		panelDePestanas.addTab("Artistas", null, artista.panel1, null);
+		panelDePestanas.addTab("Artistas", null, PanelArtista.panel1, null);
 
 		PanelDisquera disq = new PanelDisquera();
-		panelDePestanas.addTab("Disqueras", null, disq.panel2, null);
+		panelDePestanas.addTab("Disqueras", null, PanelDisquera.panel2, null);
 
 		PanelAlbum obj1 = new PanelAlbum();
-		panelDePestanas.addTab("Álbums", null, obj1.panel3, null);
+		panelDePestanas.addTab("Álbums", null, PanelAlbum.panel3, null);
 
 		Reportes obj = new Reportes();
-		panelDePestanas.addTab("Reportes", null, obj.panel4, null);
+		panelDePestanas.addTab("Reportes", null, Reportes.panel4, null);
 
 	}
 }

@@ -6,8 +6,6 @@ package pruebas;
  
 import java.awt.FlowLayout;
 import javax.swing.JFrame;
-import org.freixas.jcalendar.JCalendar;
-import org.freixas.jcalendar.JCalendarCombo;
  
 /**
  *

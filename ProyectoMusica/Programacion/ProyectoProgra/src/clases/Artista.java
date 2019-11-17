@@ -2,8 +2,6 @@ package clases;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.Date;
-
 import javax.swing.JOptionPane;
 
 import conexion.ConexionPostgres;

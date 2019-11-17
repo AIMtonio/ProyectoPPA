@@ -15,7 +15,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import clases.Album;
-import clases.Artista;
 import conexion.ConexionPostgres;
 
 public class PanelAlbum{
@@ -73,6 +72,7 @@ public class PanelAlbum{
 		panel3.add(btnActualizarArtistas);
 		// Evento llenar artista combo
 				ActionListener llenarArtista = new ActionListener() {
+					@Override
 					public void actionPerformed(ActionEvent e) {
 						artistas.removeAllItems();
 						try{
@@ -105,6 +105,7 @@ public class PanelAlbum{
 		panel3.add(btnActualizarDisquera);
 		// Evento llenar artista combo
 		ActionListener llenardisquera = new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				disq.removeAllItems();
 				try{
@@ -144,6 +145,7 @@ public class PanelAlbum{
 		panel3.add(btnRegistrar);
 		// Evento registrar
 				ActionListener registrar = new ActionListener() {
+					@Override
 					public void actionPerformed(ActionEvent e) {
 						if(tfNombreAlbum.getText().equalsIgnoreCase("") || 
 						   tfGenero.getText().equalsIgnoreCase("") || 
@@ -177,6 +179,7 @@ public class PanelAlbum{
 		panel3.add(btnConsultar);
 		// Evento consultar
 		ActionListener consultar = new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				nombre_album = JOptionPane.showInputDialog("Ingresa el album a buscar");
 				Album consultar=new Album(nombre_album);
@@ -219,6 +222,7 @@ public class PanelAlbum{
 		panel3.add(btnEliminar);
 		// Evento registrar
 		ActionListener eliminar = new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(tfNombreAlbum.getText().equalsIgnoreCase("")) {
 					JOptionPane.showMessageDialog(null, "Consulta para poder eliminar");
