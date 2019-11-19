@@ -1,4 +1,10 @@
 package froms;
+
+/**
+ *Frame Pincipal, que contiene todos los paneles
+ *
+ *@author Liz Jimenez & Antonio Alonso
+ */
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
@@ -9,6 +15,9 @@ public class Principal extends JFrame {
 
 	protected JPanel contentPane;
 
+	/**
+	 * Constructor que inicializa el Frame, lo abre y contiene los paneles
+	 */
 	public Principal() {
 
 // título de la ventana
@@ -31,17 +40,17 @@ public class Principal extends JFrame {
 // se posiciona en el panel
 		panelDePestanas.setBounds(10, 11, 679, 464);
 		contentPane.add(panelDePestanas);
-		
-//Agregamos paneles a Frame
+
+//Agregamos panel Artista a Frame
 		PanelArtista artista = new PanelArtista();
 		panelDePestanas.addTab("Artistas", null, PanelArtista.panel1, null);
-
+// Agregamos panel disquera a Frame
 		PanelDisquera disq = new PanelDisquera();
 		panelDePestanas.addTab("Disqueras", null, PanelDisquera.panel2, null);
-
+// Agregamos panel Album a Frame
 		PanelAlbum obj1 = new PanelAlbum();
 		panelDePestanas.addTab("Álbums", null, PanelAlbum.panel3, null);
-
+// Agregamos panel Reportes a Frame
 		Reportes obj = new Reportes();
 		panelDePestanas.addTab("Reportes", null, Reportes.panel4, null);
 

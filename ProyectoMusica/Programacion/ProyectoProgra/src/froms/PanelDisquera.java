@@ -1,5 +1,10 @@
 package froms;
 
+/**
+ * PanelDisquera, que se integra al Frame Principal
+ * 
+ * @author Liz Jimenez & Antonio Alonso
+ */
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,6 +23,9 @@ public class PanelDisquera {
 	static JPanel panel2 = new JPanel();
 
 	// Componentes
+	/**
+	 * Componentes que integran el panel Para la manipulacion del usuario
+	 */
 	JTextField tfNombre = new JTextField("");
 	JTextField tfDireccion = new JTextField("");
 	JTextField tfTelefono = new JTextField("");
@@ -137,7 +145,7 @@ public class PanelDisquera {
 		mes.addItem("10");
 		mes.addItem("11");
 		mes.addItem("12");
-		
+
 		mes.setBounds(400, 270, 100, 22);
 		panel2.add(mes);
 
@@ -161,14 +169,12 @@ public class PanelDisquera {
 		ActionListener registrar = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//Validacion de campos vacios
-				if(tfNombre.getText().equalsIgnoreCase("") || 
-				   tfDireccion.getText().equalsIgnoreCase("") ||
-				   tfTelefono.getText().equalsIgnoreCase("") ||
-				   tfCorreo.getText().equalsIgnoreCase("")) {
+				// Validacion de campos vacios
+				if (tfNombre.getText().equalsIgnoreCase("") || tfDireccion.getText().equalsIgnoreCase("")
+						|| tfTelefono.getText().equalsIgnoreCase("") || tfCorreo.getText().equalsIgnoreCase("")) {
 					JOptionPane.showMessageDialog(null, "Falta algun campo por llenar");
-				}else {
-					//Proceso de registro
+				} else {
+					// Proceso de registro
 					nombre_d = tfNombre.getText();
 					direccion = tfDireccion.getText();
 					telefono = Long.parseLong(tfTelefono.getText());
@@ -181,12 +187,12 @@ public class PanelDisquera {
 					id_disquera = validar.getId_disquera();
 					if (id_disquera == 0) {
 						Disquera registro = new Disquera(nombre_d, direccion, correo, fecha_creacion, telefono);
-						registro.registrarDisquera();
+						registro.registro();
 						limpiarDatos();
 					} else {
 						JOptionPane.showMessageDialog(null, "El nombre de la disquera ya existe");
 					}
-				}	
+				}
 			}
 		};
 		// Activacion del evento registro
@@ -211,7 +217,7 @@ public class PanelDisquera {
 					Disquera editar = new Disquera(nombre_d, direccion, correo, telefono);
 					editar.consultarIdDisquera();
 					id_disquera = editar.getId_disquera();
-					editar.modificarDisquera();
+					editar.modifica();
 					limpiarDatos();
 				}
 			}
@@ -266,7 +272,7 @@ public class PanelDisquera {
 					} else {
 						int v = JOptionPane.showConfirmDialog(null, "Deseas eliminar la disquera?");
 						if (v == 0) {
-							eliminar.eliminarDisquera();
+							eliminar.elimina();
 							limpiarDatos();
 						}
 
@@ -292,6 +298,9 @@ public class PanelDisquera {
 		btnLimpiar.addActionListener(limpiar);
 	}
 
+	/**
+	 * Metodo para limpiar el panel
+	 */
 	public void limpiarDatos() {
 		tfNombre.setText("");
 		tfDireccion.setText("");

@@ -1,5 +1,10 @@
 package froms;
 
+/**
+ * PanelArtista, que se integra al Frame Principal
+ * 
+ * @author Liz Jimenez & Antonio Alonso
+ */
 import java.awt.FlowLayout;
 import java.awt.Font;
 
@@ -23,7 +28,7 @@ import java.awt.geom.Area;
 import java.util.Date;
 
 public class PanelArtista extends JFrame {
-
+//Variables de clase
 	int id_artista;
 	String nombreArtista;
 	String apellidosArtista;
@@ -31,7 +36,9 @@ public class PanelArtista extends JFrame {
 	String sexo;
 	String fecha_nacimiento;
 	String nacionalidad;
-
+	/**
+	 * Componentes que integran el panel Para la manipulacion del usuario
+	 */
 	JComboBox combo = new JComboBox();
 	JTextField tfArtista = new JTextField();
 	JTextField tfApellidos = new JTextField("");
@@ -290,11 +297,10 @@ public class PanelArtista extends JFrame {
 		ActionListener registro = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(tfArtista.getText().equalsIgnoreCase("") || 
-				   tfApellidos.getText().equalsIgnoreCase("") || 
-				   tfNartistico.getText().equalsIgnoreCase("")) {
-				   JOptionPane.showMessageDialog(null, "Algun campo esta vacio");
-				}else {
+				if (tfArtista.getText().equalsIgnoreCase("") || tfApellidos.getText().equalsIgnoreCase("")
+						|| tfNartistico.getText().equalsIgnoreCase("")) {
+					JOptionPane.showMessageDialog(null, "Algun campo esta vacio");
+				} else {
 					// Validar si existe
 					nombreArtistico = tfNartistico.getText();
 					Artista validar = new Artista(nombreArtistico);
@@ -311,16 +317,17 @@ public class PanelArtista extends JFrame {
 						}
 						nacionalidad = (String) combo.getSelectedItem();
 						fecha_nacimiento = "1998-07-15";
-						Artista registro = new Artista(nombreArtista, apellidosArtista, nombreArtistico, nacionalidad, sexo,
-								fecha_nacimiento);
-						registro.registrarArtista();
+						Artista registro = new Artista(nombreArtista, apellidosArtista, nombreArtistico, nacionalidad,
+								sexo, fecha_nacimiento);
+						registro.registro();
 						limpiarDatos();
 					} else {
-						//JOptionPane.showMessageDialog(null, "El nombre artistico del artista ya existe");
+						// JOptionPane.showMessageDialog(null, "El nombre artistico del artista ya
+						// existe");
 						JOptionPane.showMessageDialog(null, "El nombre artistico ya existe");
 					}
 				}
-				
+
 			}
 		};
 		// Activacion del evento registro
@@ -348,7 +355,7 @@ public class PanelArtista extends JFrame {
 					JOptionPane.showMessageDialog(null, "n artistico: " + nombreArtistico);
 					actualizacion.consultarIdArtista();
 					id_artista = actualizacion.getId_artista();
-					actualizacion.modificarArtista();
+					actualizacion.modifica();
 					limpiarCombo();
 					limpiarDatos();
 				}
@@ -372,7 +379,7 @@ public class PanelArtista extends JFrame {
 				consultar.consultarIdArtista();
 				id_artista = consultar.getId_artista();
 				if (id_artista != 0) {
-					consultar.consultarArtista(id_artista);
+					consultar.consulta(id_artista);
 					tfArtista.setText(consultar.getNombre());
 					tfApellidos.setText(consultar.getApellido());
 					tfNartistico.setText(consultar.getN_artistico());
@@ -417,7 +424,7 @@ public class PanelArtista extends JFrame {
 							Artista eliminar = new Artista(nombreArtistico);
 							eliminar.consultarIdArtista();
 							id_artista = eliminar.getId_artista();
-							eliminar.eliminarArtista();
+							eliminar.elimina();
 							limpiarDatos();
 						}
 					} else {
@@ -430,11 +437,17 @@ public class PanelArtista extends JFrame {
 
 	}
 
+	/**
+	 * Metodo para limpiar los combos
+	 */
 	public void limpiarCombo() {
 		combo.removeAllItems();
 		combo.addItem("Selecciona");
 	}
 
+	/**
+	 * Metodo para limpiar el panel
+	 */
 	public void limpiarDatos() {
 		limpiarCombo();
 		tfArtista.setText("");
