@@ -1,5 +1,6 @@
 package froms;
 
+import java.awt.Color;
 /**
  * PanelArtista, que se integra al Frame Principal
  * 
@@ -21,10 +22,14 @@ import javax.swing.ButtonGroup;
 import javax.swing.JRadioButton;
 import javax.swing.event.ChangeListener;
 
+import com.toedter.calendar.JCalendar;
+import com.toedter.calendar.JDateChooser;
+
 import clases.Artista;
 
 import java.awt.event.*;
 import java.awt.geom.Area;
+import java.util.Calendar;
 import java.util.Date;
 
 public class PanelArtista extends JFrame {
@@ -46,23 +51,30 @@ public class PanelArtista extends JFrame {
 	// Definir Radio buttons
 	JRadioButton rbtn1 = new JRadioButton("Masculino", false);
 	JRadioButton rbtn2 = new JRadioButton("Femenino", false);
+	JDateChooser calendario=new JDateChooser();
+	
 
 	static JPanel panel1 = new JPanel();
 
 	public PanelArtista() {
+		//Color de BG del Jpanel
+		Color c=new Color(31, 254, 156);
+		panel1.setBackground(c);
+		
 		panel1.setLayout(null);
 		// imagen
 		JLabel lbl0 = new JLabel();
-		lbl0.setIcon(new ImageIcon("src/img/img.png"));
+		lbl0.setIcon(new ImageIcon("src/img/artista.png"));
 		lbl0.setBounds(10, 10, 450, 500);
 		panel1.add(lbl0);
 
 		// Titulo
 		Font fuente = new Font("Arial", 0, 20);
-		JLabel lblT = new JLabel("SECCIÓN DE ARTISTAS ");
-		lblT.setFont(fuente);
-		lblT.setBounds(250, 30, 348, 20);
-		panel1.add(lblT);
+		//JLabel lblT = new JLabel("SECCIÓN DE ARTISTAS ");
+		JLabel lblSeccionArtistas = new JLabel();
+		lblSeccionArtistas.setIcon(new ImageIcon("src/img/secciondeartistas.png"));
+		lblSeccionArtistas.setBounds(150, 30, 648, 50);
+		panel1.add(lblSeccionArtistas);
 		// una etiqueta en el panel de la pestaña 1
 
 		// Nombre
@@ -95,8 +107,8 @@ public class PanelArtista extends JFrame {
 		grupo1.add(rbtn1);
 		grupo1.add(rbtn2);
 		// Definir posicion RB
-		rbtn1.setBounds(410, 190, 348, 20);
-		rbtn2.setBounds(410, 210, 348, 20);
+		rbtn1.setBounds(410, 190, 100, 20);
+		rbtn2.setBounds(410, 210, 100, 20);
 		// Mostrar RB
 		panel1.add(rbtn1);
 		panel1.add(rbtn2);
@@ -278,26 +290,26 @@ public class PanelArtista extends JFrame {
 		// JTextField tf4 = new JTextField("");
 		// tf4.setBounds(380, 220, 150, 22);
 		// panel1.add(tf4);
-
-		JCalendarCombo calEjemplo2 = new JCalendarCombo();
-
-		this.add(calEjemplo2);
-		this.setLayout(new FlowLayout());
-		this.setSize(400, 300);
-		calEjemplo2.setBounds(380, 280, 280, 20);
-		panel1.add(calEjemplo2);
-		setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
+		 
+		// Ubicar y agregar al panel
+		calendario.setBounds(380, 280, 280, 20);
+		panel1.add(calendario);
+		
 		// Boton registrar
-		JButton btn1 = new JButton("Registrar");
-		btn1.setBounds(550, 130, 100, 22);
-		panel1.add(btn1);
+		//JButton btnRegistrar = new JButton("Registrar");
+		JButton btnRegistrar = new JButton();
+		//btnRegistrar.setBounds(250, 330, 100, 20);
+		btnRegistrar.setBounds(250, 330, 50, 50);
+		ImageIcon iconRegistro=new ImageIcon("src/img/add.png");
+		btnRegistrar.setIcon(iconRegistro);
+		panel1.add(btnRegistrar);
 
 		// Evento registrar
 		ActionListener registro = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (tfArtista.getText().equalsIgnoreCase("") || tfApellidos.getText().equalsIgnoreCase("")
+				if (tfArtista.getText().equalsIgnoreCase("")
+						|| tfApellidos.getText().equalsIgnoreCase("")
 						|| tfNartistico.getText().equalsIgnoreCase("")) {
 					JOptionPane.showMessageDialog(null, "Algun campo esta vacio");
 				} else {
@@ -316,26 +328,25 @@ public class PanelArtista extends JFrame {
 							sexo = "F";
 						}
 						nacionalidad = (String) combo.getSelectedItem();
-						fecha_nacimiento = "1998-07-15";
+						//fecha_nacimiento = "1998-07-15";
 						Artista registro = new Artista(nombreArtista, apellidosArtista, nombreArtistico, nacionalidad,
-								sexo, fecha_nacimiento);
+								sexo, formatoFecha());
 						registro.registro();
 						limpiarDatos();
 					} else {
-						// JOptionPane.showMessageDialog(null, "El nombre artistico del artista ya
-						// existe");
 						JOptionPane.showMessageDialog(null, "El nombre artistico ya existe");
 					}
 				}
-
 			}
 		};
 		// Activacion del evento registro
-		btn1.addActionListener(registro);
+		btnRegistrar.addActionListener(registro);
 
-		// Boton registro
-		JButton btnEditar = new JButton("Editar");
-		btnEditar.setBounds(550, 160, 100, 22);
+		// Boton modificar
+		JButton btnEditar = new JButton();
+		btnEditar.setBounds(330, 330, 50, 50);
+		ImageIcon iconEdit=new ImageIcon("src/img/edit.png");
+		btnEditar.setIcon(iconEdit);
 		panel1.add(btnEditar);
 
 		// Evento modificar
@@ -365,8 +376,10 @@ public class PanelArtista extends JFrame {
 		btnEditar.addActionListener(modificar);
 
 		// Boton consulta
-		JButton btnConsultar = new JButton("Consultar");
-		btnConsultar.setBounds(550, 100, 100, 22);
+		JButton btnConsultar = new JButton();
+		btnConsultar.setBounds(410, 330, 50, 50);
+		ImageIcon iconConsulta=new ImageIcon("src/img/consulta.png");
+		btnConsultar.setIcon(iconConsulta);
 		panel1.add(btnConsultar);
 
 		// Evento consultar
@@ -401,8 +414,10 @@ public class PanelArtista extends JFrame {
 		btnConsultar.addActionListener(consultar);
 
 		// Boton eliminar
-		JButton btnEliminar = new JButton("Eliminar");
-		btnEliminar.setBounds(550, 240, 100, 22);
+		JButton btnEliminar = new JButton();
+		btnEliminar.setBounds(490, 330, 50, 50);
+		ImageIcon iconEliminar=new ImageIcon("src/img/eliminar.png");
+		btnEliminar.setIcon(iconEliminar);
 		panel1.add(btnEliminar);
 
 		// Evento eliminar
@@ -434,6 +449,13 @@ public class PanelArtista extends JFrame {
 		};
 		// Activacion del evento eliminar
 		btnEliminar.addActionListener(eliminar);
+		
+		// Boton limpiar
+				JButton btnLimpiar = new JButton();
+				btnLimpiar.setBounds(570, 330, 50, 50);
+				ImageIcon iconLimpiar=new ImageIcon("src/img/limpiar.png");
+				btnLimpiar.setIcon(iconLimpiar);
+				panel1.add(btnLimpiar);
 
 	}
 
@@ -456,6 +478,16 @@ public class PanelArtista extends JFrame {
 		combo.addItem("Selecciona");
 		rbtn1.setSelected(false);
 		rbtn2.setSelected(false);
+	}
+	
+	public String formatoFecha() {
+		String hola;
+		int mes=0;
+		mes=calendario.getCalendar().get(Calendar.MONTH)+1;
+		hola = Integer.toString(calendario.getCalendar().get(Calendar.YEAR))
+		+ "-" + Integer.toString(mes)
+		+ "-" + Integer.toString(calendario.getCalendar().get(Calendar.DAY_OF_MONTH));
+		return hola;
 	}
 
 }

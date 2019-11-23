@@ -12,6 +12,8 @@ import java.sql.DriverManager;
 public class ConexionPostgres {
 	// Variable de clase privada
 	private Connection con;
+	
+	
 
 	/**
 	 * Constructor que ejecuta la conexion con los parametros establecidos

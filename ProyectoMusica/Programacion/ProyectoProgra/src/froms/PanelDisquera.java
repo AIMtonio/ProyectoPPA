@@ -1,5 +1,6 @@
 package froms;
 
+import java.awt.Color;
 /**
  * PanelDisquera, que se integra al Frame Principal
  * 
@@ -41,20 +42,26 @@ public class PanelDisquera {
 	long telefono;
 
 	public PanelDisquera() {
+		
+		//Colores Panel
+		Color c=new Color(253, 231, 120);
+		panel2.setBackground(c);
+		
 		Font fuente = new Font("Arial", 0, 20);
 		panel2.setLayout(null);
 
 		// imagen
 		JLabel lbl6 = new JLabel();
-		lbl6.setIcon(new ImageIcon("src/img/img.png"));
+		lbl6.setIcon(new ImageIcon("src/img/disquera.png"));
 		lbl6.setBounds(10, 10, 450, 500);
 		panel2.add(lbl6);
 
 		// Titulo
-		JLabel lblT2 = new JLabel("SECCIÓN DE DISQUERAS ");
-		lblT2.setFont(fuente);
-		lblT2.setBounds(250, 30, 348, 20);
-		panel2.add(lblT2);
+		JLabel lblSeccionDisquera = new JLabel();
+		lblSeccionDisquera.setFont(fuente);
+		lblSeccionDisquera.setBounds(150, 30, 648, 50);
+		lblSeccionDisquera.setIcon(new ImageIcon("src/img/secciondedisqueras.png"));
+		panel2.add(lblSeccionDisquera);
 		// una etiqueta en el panel de la pestaña 1
 
 		// Nombre
@@ -161,8 +168,10 @@ public class PanelDisquera {
 		anio.setBounds(550, 270, 100, 22);
 		panel2.add(anio);
 
-		JButton btnRegistrar = new JButton("Registrar");
-		btnRegistrar.setBounds(550, 100, 100, 22);
+		JButton btnRegistrar = new JButton();
+		btnRegistrar.setBounds(250, 330, 50, 50);
+		ImageIcon iconRegistro=new ImageIcon("src/img/add.png");
+		btnRegistrar.setIcon(iconRegistro);
 		panel2.add(btnRegistrar);
 
 		// Evento Registrar
@@ -198,8 +207,10 @@ public class PanelDisquera {
 		// Activacion del evento registro
 		btnRegistrar.addActionListener(registrar);
 
-		JButton btnEditar = new JButton("Editar");
-		btnEditar.setBounds(550, 130, 100, 22);
+		JButton btnEditar = new JButton();
+		btnEditar.setBounds(330, 330, 50, 50);
+		ImageIcon iconEdit=new ImageIcon("src/img/edit.png");
+		btnEditar.setIcon(iconEdit);
 		panel2.add(btnEditar);
 
 		// Evento modificar
@@ -225,8 +236,10 @@ public class PanelDisquera {
 		// Activacion del evento modificar
 		btnEditar.addActionListener(modificar);
 
-		JButton btnConsultar = new JButton("Consultar");
-		btnConsultar.setBounds(550, 160, 100, 22);
+		JButton btnConsultar = new JButton();
+		btnConsultar.setBounds(410, 330, 50, 50);
+		ImageIcon iconConsulta=new ImageIcon("src/img/consulta.png");
+		btnConsultar.setIcon(iconConsulta);
 		panel2.add(btnConsultar);
 		// Evento consultar
 		ActionListener consultar = new ActionListener() {
@@ -253,8 +266,10 @@ public class PanelDisquera {
 		// Activacion del evento modificar
 		btnConsultar.addActionListener(consultar);
 
-		JButton btnEliminar = new JButton("Eliminar");
-		btnEliminar.setBounds(550, 190, 100, 22);
+		JButton btnEliminar = new JButton();
+		btnEliminar.setBounds(490, 330, 50, 50);
+		ImageIcon iconEliminar=new ImageIcon("src/img/eliminar.png");
+		btnEliminar.setIcon(iconEliminar);
 		panel2.add(btnEliminar);
 		// Evento eliminar
 		ActionListener eliminar = new ActionListener() {
@@ -284,8 +299,10 @@ public class PanelDisquera {
 		// Activacion del evento eliminar
 		btnEliminar.addActionListener(eliminar);
 
-		JButton btnLimpiar = new JButton("Limpiar");
-		btnLimpiar.setBounds(550, 220, 100, 22);
+		JButton btnLimpiar = new JButton();
+		btnLimpiar.setBounds(570, 330, 50, 50);
+		ImageIcon iconLimpiar=new ImageIcon("src/img/limpiar.png");
+		btnLimpiar.setIcon(iconLimpiar);
 		panel2.add(btnLimpiar);
 		// Evento eliminar
 		ActionListener limpiar = new ActionListener() {

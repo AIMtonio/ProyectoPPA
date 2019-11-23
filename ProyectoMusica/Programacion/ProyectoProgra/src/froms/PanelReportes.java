@@ -15,13 +15,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class Reportes extends Frame {
+public class PanelReportes extends Frame {
 	static JPanel panel4 = new JPanel();
 
 	/**
 	 * Constructor que inicializa el frame con sus atributos
 	 */
-	public Reportes() {
+	public PanelReportes() {
 		Font fuente = new Font("Arial", 0, 20);
 		panel4.setLayout(null);
 

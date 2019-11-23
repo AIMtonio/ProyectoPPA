@@ -51,8 +51,8 @@ public class Principal extends JFrame {
 		PanelAlbum obj1 = new PanelAlbum();
 		panelDePestanas.addTab("Álbums", null, PanelAlbum.panel3, null);
 // Agregamos panel Reportes a Frame
-		Reportes obj = new Reportes();
-		panelDePestanas.addTab("Reportes", null, Reportes.panel4, null);
+		PanelReportes obj = new PanelReportes();
+		panelDePestanas.addTab("Reportes", null, PanelReportes.panel4, null);
 
 	}
 }
