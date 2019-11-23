@@ -1,6 +1,5 @@
 package clases;
 
-import conexion.*;
 /**
  * Class Artista, implementa la interface Interfaz 
  * Para la manipulacion del panelArtista
@@ -8,7 +7,6 @@ import conexion.*;
  * @author Liz Jimenez & Antonio Alonso
  */
 
-import java.sql.Connection;
 //Importaciones 
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -325,24 +323,6 @@ public class Artista implements Interfaz {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-	}
-	
-	public void prueba() {
-		try {
-			//ConexionPostgres objConexion = new ConexionPostgres();
-			
-			Connection conn = EjemploSingleton.getConnection();
-			
-			Statement st = C.getCon().createStatement();
-			String sql = "insert into artista (nombre, apellido, nombre_artistico, sexo_artista, fecha_nacimiento,"
-					+ " nacionalidad) values('" + nombre + "','" + apellido + "','" + n_artistico + "','" + sexo + "','"
-					+ fecha_nac + "','" + nacionalidad + "');";
-			st.executeUpdate(sql);
-			JOptionPane.showMessageDialog(null, "Registro exitoso");
-		} catch (Exception e) {
-			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Error de registro");
 		}
 	}
 
