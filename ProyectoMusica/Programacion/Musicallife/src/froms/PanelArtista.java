@@ -29,6 +29,8 @@ import clases.Artista;
 
 import java.awt.event.*;
 import java.awt.geom.Area;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -288,12 +290,8 @@ public class PanelArtista extends JFrame {
 		lbl4.setBounds(250, 280, 348, 20);
 		panel1.add(lbl4);
 
-		// JTextField tf4 = new JTextField("");
-		// tf4.setBounds(380, 220, 150, 22);
-		// panel1.add(tf4);
-		 
 		// Ubicar y agregar al panel
-		calendario.setBounds(380, 280, 280, 20);
+		calendario.setBounds(380, 280, 150, 20);
 		panel1.add(calendario);
 		
 		// Boton registrar
@@ -409,6 +407,16 @@ public class PanelArtista extends JFrame {
 					}
 					combo.addItem(consultar.getNacionalidad());
 					llenar.llenarArtista();
+					
+					fecha_nacimiento = consultar.getFecha_nac();
+					
+					 try {
+						 SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+					      Date fechaDate = formato.parse(fecha_nacimiento);
+					      calendario.setDate(fechaDate);
+					      } catch (ParseException ex) {
+					        System.out.println(ex);
+					      }   
 				} else {
 					JOptionPane.showMessageDialog(null, "Artista no encontrado");
 				}
@@ -467,7 +475,6 @@ public class PanelArtista extends JFrame {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						limpiarDatos();
-						JOptionPane.showMessageDialog(null, "borrando");
 					}
 				};
 				// Activacion del evento limpiar
@@ -494,6 +501,7 @@ public class PanelArtista extends JFrame {
 		combo.addItem("Selecciona");
 		rbtn1.setSelected(false);
 		rbtn2.setSelected(false);
+		calendario.setDate(null);
 	}
 	
 	public String formatoFecha() {
@@ -504,6 +512,17 @@ public class PanelArtista extends JFrame {
 		+ "-" + Integer.toString(mes)
 		+ "-" + Integer.toString(calendario.getCalendar().get(Calendar.DAY_OF_MONTH));
 		return hola;
-	}
+	}//end formatoFecha metodo
+	
+	 public static Date ParseFecha(String fecha){
+	        SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
+	        Date fechaDate = null;
+	        try {
+	            fechaDate = formato.parse(fecha);
+	        } catch (ParseException ex) {
+	            System.out.println(ex);
+	        }
+	        return fechaDate;
+	    }//End ParseFecha metedo
 
 }

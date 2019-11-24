@@ -218,13 +218,22 @@ public class PanelAlbum {
 		// Activacion del evento registro
 		btnEliminar.addActionListener(eliminar);
 		
-		// Boton modificar
-				JButton btnEliminar = new JButton();
-				btnEliminar.setBounds(490, 330, 50, 50);
-				ImageIcon iconEliminar=new ImageIcon("src/img/eliminar.png");
-				btnEliminar.setIcon(iconEliminar);
-				panel1.add(btnEliminar);
+			// Boton modificar
+				JButton btnEditar = new JButton();
+				btnEditar.setBounds(490, 330, 50, 50);
+				ImageIcon iconEditar=new ImageIcon("src/img/edit.png");
+				btnEditar.setIcon(iconEditar);
+				panel3.add(btnEditar);
 		
+				// Evento modificar
+				ActionListener edit = new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						JOptionPane.showMessageDialog(null, "No aplica porque un album no se puede modificar una vez creado");
+					}
+				};
+				// Activacion del evento edit
+				btnEditar.addActionListener(edit);
 		
 		
 		
