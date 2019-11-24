@@ -1,5 +1,7 @@
 package clases;
 
+import java.sql.Connection;
+
 /**
  * Class Artista, implementa la interface Interfaz 
  * Para la manipulacion del panelArtista
@@ -12,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import conexion.ConexionPostgres;
+import conexion.ConexionPostgresSingleton;
 import interfaces.Interfaz;
 
 public class Artista implements Interfaz {
@@ -20,6 +23,7 @@ public class Artista implements Interfaz {
 	String nombre, apellido, n_artistico, nacionalidad;
 	String sexo;
 	String fecha_nac;
+	Connection conn = ConexionPostgresSingleton.getConnection();
 
 	// Gets
 	/**
@@ -217,8 +221,8 @@ public class Artista implements Interfaz {
 	 */
 	public void registro() {
 		try {
-			ConexionPostgres objConexion = new ConexionPostgres();
-			Statement st = objConexion.getCon().createStatement();
+			//ConexionPostgres objConexion = new ConexionPostgres();
+			Statement st = conn.createStatement();
 			String sql = "insert into artista (nombre, apellido, nombre_artistico, sexo_artista, fecha_nacimiento,"
 					+ " nacionalidad) values('" + nombre + "','" + apellido + "','" + n_artistico + "','" + sexo + "','"
 					+ fecha_nac + "','" + nacionalidad + "');";
