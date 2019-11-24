@@ -57,15 +57,15 @@ public class PanelAlbum {
 
 		// imagen
 		JLabel lbl12 = new JLabel();
-		lbl12.setIcon(new ImageIcon("src/img/img.png"));
+		lbl12.setIcon(new ImageIcon("src/img/album.png"));
 		lbl12.setBounds(10, 10, 450, 500);
 		panel3.add(lbl12);
 
 		// Titulo
-		JLabel lblT3 = new JLabel("SECCIÓN DE ÁLBUMS ");
-		lblT3.setFont(fuente);
-		lblT3.setBounds(250, 30, 348, 20);
-		panel3.add(lblT3);
+		JLabel lblSeccionAlbum = new JLabel();
+		lblSeccionAlbum.setIcon(new ImageIcon("src/img/secciondealbums.png"));
+		lblSeccionAlbum.setBounds(150, 30, 648, 50);
+		panel3.add(lblSeccionAlbum);
 		// una etiqueta en el panel de la pestaña 1
 
 		// Album
@@ -106,8 +106,10 @@ public class PanelAlbum {
 		panel3.add(tfDuracion);
 
 		// Boton registrar
-		JButton btnRegistrar = new JButton("Registrar");
-		btnRegistrar.setBounds(550, 100, 100, 22);
+		JButton btnRegistrar = new JButton();
+		btnRegistrar.setBounds(250, 330, 50, 50);
+		ImageIcon iconRegistro=new ImageIcon("src/img/add.png");
+		btnRegistrar.setIcon(iconRegistro);
 		panel3.add(btnRegistrar);
 		// Evento registrar
 		ActionListener registrar = new ActionListener() {
@@ -139,8 +141,10 @@ public class PanelAlbum {
 		btnRegistrar.addActionListener(registrar);
 
 		// Boton consultar
-		JButton btnConsultar = new JButton("Consultar");
-		btnConsultar.setBounds(550, 130, 100, 22);
+		JButton btnConsultar = new JButton();
+		btnConsultar.setBounds(330, 330, 50, 50);
+		ImageIcon iconConsulta=new ImageIcon("src/img/consulta.png");
+		btnConsultar.setIcon(iconConsulta);
 		panel3.add(btnConsultar);
 		// Evento consultar
 		ActionListener consultar = new ActionListener() {
@@ -182,8 +186,10 @@ public class PanelAlbum {
 		btnConsultar.addActionListener(consultar);
 
 		// Boton eliminar
-		JButton btnEliminar = new JButton("Eliminar");
-		btnEliminar.setBounds(550, 160, 100, 22);
+		JButton btnEliminar = new JButton();
+		btnEliminar.setBounds(410, 330, 50, 50);
+		ImageIcon iconEliminar=new ImageIcon("src/img/eliminar.png");
+		btnEliminar.setIcon(iconEliminar);
 		panel3.add(btnEliminar);
 		// Evento registrar
 		ActionListener eliminar = new ActionListener() {
@@ -211,6 +217,18 @@ public class PanelAlbum {
 		};
 		// Activacion del evento registro
 		btnEliminar.addActionListener(eliminar);
+		
+		// Boton modificar
+				JButton btnEliminar = new JButton();
+				btnEliminar.setBounds(490, 330, 50, 50);
+				ImageIcon iconEliminar=new ImageIcon("src/img/eliminar.png");
+				btnEliminar.setIcon(iconEliminar);
+				panel1.add(btnEliminar);
+		
+		
+		
+		
+		
 	}
 
 	/**
