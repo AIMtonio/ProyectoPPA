@@ -235,6 +235,10 @@ public class Album implements Interfaz {
 		super();
 		this.nombre_album = nombre_album;
 	}
+	
+	public Album(){
+		
+	}
 
 	// Métodos
 
@@ -371,6 +375,22 @@ public class Album implements Interfaz {
 			ResultSet rs = st.executeQuery(sql);
 			while (rs.next()) {
 				nombre_disquera = rs.getString(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Método para consultar un album por fecha
+	 */
+	public void consultaFecha(String dato) {
+		try {
+			Statement st = conn.createStatement();
+			String sql = "Select id_album from album where fecha_lanzamiento='" + dato + "'";
+			ResultSet rs = st.executeQuery(sql);
+			while (rs.next()) {
+				id_album = rs.getInt(1);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

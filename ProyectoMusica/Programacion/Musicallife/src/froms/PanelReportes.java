@@ -10,6 +10,8 @@ import java.awt.Font;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
+import java.util.Calendar;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -19,13 +21,17 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import com.toedter.calendar.JDateChooser;
+
 import clases.Album;
+import clases.Artista;
 import clases.ReporteDos;
 import clases.Reportes;
 
 public class PanelReportes extends Frame {
 	static JPanel panel4 = new JPanel();
 
+	JDateChooser calendario=new JDateChooser();
 	/**
 	 * Constructor que inicializa el frame con sus atributos
 	 */
@@ -105,14 +111,19 @@ public class PanelReportes extends Frame {
 					textocreacion.setVisible(false);
 					botonartista.setVisible(true);
 					botoncreacion.setVisible(false);
+					calendario.setVisible(false);
 					
 				}else if(rep.getSelectedItem()=="Fecha de creación") {
 					labelartista.setVisible(false);
 					labelcreacion.setVisible(true);
 					textoartista.setVisible(false);
-					textocreacion.setVisible(true);
+					textocreacion.setVisible(false);
 					botonartista.setVisible(false);
 					botoncreacion.setVisible(true);
+					// Ubicar y agregar al panel
+					calendario.setBounds(380, 210, 150, 20);
+					panel4.add(calendario);
+					calendario.setVisible(true);
 					
 				}else if(rep.getSelectedItem()=="Seleccionar") {
 					labelartista.setVisible(false);
@@ -121,6 +132,7 @@ public class PanelReportes extends Frame {
 					textocreacion.setVisible(false);
 					botoncreacion.setVisible(false);
 					botonartista.setVisible(false);
+					calendario.setVisible(false);
 				}
 		}
 		};
@@ -131,22 +143,28 @@ public class PanelReportes extends Frame {
 		ActionListener pdfalbumartista = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String contenido=textoartista.getText();
-				//Obtener Clave
-				boolean security;
-				String op = JOptionPane.showInputDialog("Ingresa contraseña de la disquera para poder crear el reporte: ");
-				if(op.equalsIgnoreCase("musicallife")) {
-					security = true;
-				}else {
-					security = false;
-					JOptionPane.showMessageDialog(null, "Falla de autenficiación. Revisa el Reporte.");
-				}//end if
+				String nombreArtista=textoartista.getText();
 				
+				Artista artista=new Artista(nombreArtista);
+				artista.consultarIdArtista();
+				int idArtista = artista.getId_artista();
 				
-				if(contenido!=null) {
-					Reportes objeto=new Reportes(contenido, security);
+				if(textoartista.getText().equalsIgnoreCase("")){
+					JOptionPane.showMessageDialog(null, "Ingresa nombre artistico.");
+				}else if(idArtista!=0) {
+					//Obtener Clave
+					boolean security;
+					String op = JOptionPane.showInputDialog("Ingresa contraseña de la disquera para poder crear el reporte: ");
+					if(op.equalsIgnoreCase("musicallife")) {
+						security = true;
+					}else {
+						security = false;
+						JOptionPane.showMessageDialog(null, "Falla de autenficiación. Revisa el Reporte.");
+					}//end if
+					Reportes objeto=new Reportes(nombreArtista, security);
 					objeto.start();
-					JOptionPane.showMessageDialog(null, "Se genero el PDF, revisa en el Escritorio de la lap");
+					JOptionPane.showMessageDialog(null, "Se genero correctamente el reporte en PDF");
+					
 				}else {
 					JOptionPane.showMessageDialog(null, "El artista no existe");
 				}
@@ -160,14 +178,25 @@ public class PanelReportes extends Frame {
 		ActionListener pdffecha = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String contenido=textocreacion.getText();
-				if(contenido!=null) {
-					ReporteDos objeto=new ReporteDos(contenido);
-					System.out.println(contenido);
+				Album album=new Album();
+				album.consultaFecha(formatoFecha());
+				int idAlbum = album.getId_album();
+				
+				 if(idAlbum!=0) {
+					
+					boolean security;
+					String op = JOptionPane.showInputDialog("Ingresa contraseña de la disquera para poder crear el reporte: ");
+					if(op.equalsIgnoreCase("musicallife")) {
+						security = true;
+					}else {
+						security = false;
+						JOptionPane.showMessageDialog(null, "Falla de autenficiación. Revisa el Reporte.");
+					}//end if
+					ReporteDos objeto=new ReporteDos(formatoFecha(), security);
 					objeto.start();
-					JOptionPane.showMessageDialog(null, "Se genero el PDF, revisa en el Escritorio de la lap");
+					JOptionPane.showMessageDialog(null, "Se genero correctamente el reporte en PDF");
 				}else {
-					JOptionPane.showMessageDialog(null, "El artista no existe");
+					JOptionPane.showMessageDialog(null, "No existen albums con esa fecha.");
 				}
 		}
 		};
@@ -177,4 +206,15 @@ public class PanelReportes extends Frame {
 			
 		
 	}
+	
+	public String formatoFecha() {
+		String hola;
+		int mes=0;
+		mes=calendario.getCalendar().get(Calendar.MONTH)+1;
+		hola = Integer.toString(calendario.getCalendar().get(Calendar.YEAR))
+		+ "-" + Integer.toString(mes)
+		+ "-" + Integer.toString(calendario.getCalendar().get(Calendar.DAY_OF_MONTH));
+		return hola;
+	}//end formatoFecha metodo
+	
 }
