@@ -13,7 +13,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
-import conexion.ConexionPostgresSingleton;
+import conexion.ConexionPostgres;
 import conexion.ConexionPostgresSingleton;
 import interfaces.Interfaz;
 
@@ -241,7 +241,8 @@ public class Artista implements Interfaz {
 	 */
 	public void consulta(int id_art) {
 		try {
-			Statement st = conn.createStatement();
+			ConexionPostgres objConexion = new ConexionPostgres();// Crea conexion
+			Statement st = objConexion.getCon().createStatement();
 			String sql = "Select * from artista where id_artista='" + id_art + "'";
 			ResultSet rs = st.executeQuery(sql);
 			while (rs.next()) {
@@ -264,7 +265,8 @@ public class Artista implements Interfaz {
 	 */
 	public void modifica() {
 		try {
-			Statement st = conn.createStatement();
+			ConexionPostgres objConexion = new ConexionPostgres();
+			Statement st = objConexion.getCon().createStatement();
 			String sql = "update artista set nombre='" + nombre + "', apellido='" + apellido + "',"
 					+ " nombre_artistico='" + n_artistico + "', nacionalidad='" + nacionalidad + "' "
 					+ "where id_artista = " + id_artista + ";";
@@ -281,7 +283,8 @@ public class Artista implements Interfaz {
 	 */
 	public void elimina() {
 		try {
-			Statement st = conn.createStatement();
+			ConexionPostgres objConexion = new ConexionPostgres();
+			Statement st = objConexion.getCon().createStatement();
 			String sql = "delete from artista where id_artista = " + id_artista + ";";
 			st.executeUpdate(sql);
 			JOptionPane.showMessageDialog(null, "Artista Eliminado");
@@ -297,7 +300,8 @@ public class Artista implements Interfaz {
 
 	public void consultarIdArtista() {
 		try {
-			Statement st = conn.createStatement();
+			ConexionPostgres objConexion = new ConexionPostgres();// Crea conexion
+			Statement st = objConexion.getCon().createStatement();
 			String sql = "Select id_artista from artista where nombre_artistico='" + n_artistico + "'";
 			ResultSet rs = st.executeQuery(sql);
 			while (rs.next()) {
@@ -314,7 +318,8 @@ public class Artista implements Interfaz {
 	 */
 	public void validarArtista() {
 		try {
-			Statement st = conn.createStatement();
+			ConexionPostgres objConexion = new ConexionPostgres();// Crea conexion
+			Statement st = objConexion.getCon().createStatement();
 			String sql = "Select id_artista from artista where nombre_artistico='" + n_artistico + "'";
 			ResultSet rs = st.executeQuery(sql);
 			while (rs.next()) {
