@@ -12,6 +12,10 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import conexion.ConexionPostgres;
+<<<<<<< HEAD
+=======
+import conexion.ConexionPostgresSingleton;
+>>>>>>> parent of 7aa23f5... Cambios
 import interfaces.Interfaz;
 
 public class Artista implements Interfaz {
