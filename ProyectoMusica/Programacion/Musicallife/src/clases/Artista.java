@@ -13,6 +13,10 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 import conexion.ConexionPostgres;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+import conexion.ConexionPostgresSingleton;
+>>>>>>> parent of 7aa23f5... Cambios
 =======
 import conexion.ConexionPostgresSingleton;
 >>>>>>> parent of 7aa23f5... Cambios
