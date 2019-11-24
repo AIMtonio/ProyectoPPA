@@ -21,6 +21,9 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.ButtonGroup;
 import javax.swing.JRadioButton;
 import javax.swing.event.ChangeListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyAdapter;
+
 
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
@@ -29,6 +32,7 @@ import clases.Artista;
 
 import java.awt.event.*;
 import java.awt.geom.Area;
+import java.security.KeyRep;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -479,7 +483,22 @@ public class PanelArtista extends JFrame {
 				};
 				// Activacion del evento limpiar
 				btnLimpiar.addActionListener(limpiar);
-
+				
+				
+				KeyAdapter objeto= new  KeyAdapter(){
+					public void keyTyped(KeyEvent evt) {
+						char car = evt.getKeyChar();
+				        if (Character.isDigit(car)) {
+				            getToolkit().beep();
+				            evt.consume();
+				            ImageIcon icon=new ImageIcon("src/img/letras.png");
+				            JOptionPane.showMessageDialog(null, "Solo se permite ingresar letras", "Advertencia", JOptionPane.PLAIN_MESSAGE, icon);
+				        }
+		            }
+				};
+				tfArtista.addKeyListener(objeto);
+				tfApellidos.addKeyListener(objeto);
+				tfNartistico.addKeyListener(objeto);
 	}
 
 	/**
