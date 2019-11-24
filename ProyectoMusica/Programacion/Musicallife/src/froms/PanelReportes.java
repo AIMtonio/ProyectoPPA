@@ -145,7 +145,7 @@ public class PanelReportes extends Frame {
 			public void actionPerformed(ActionEvent e) {
 				String contenido=textocreacion.getText();
 				if(contenido!=null) {
-					Reportes objeto=new Reportes(contenido);
+					ReporteDos objeto=new ReporteDos(contenido);
 					System.out.println(contenido);
 					objeto.start();
 					JOptionPane.showMessageDialog(null, "Se genero el PDF, revisa en el Escritorio de la lap");

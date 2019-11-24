@@ -28,6 +28,10 @@ public class ReporteDos extends Thread {
 	Font fuente= new Font();
 	Font fuente1= new Font();
 	
+	public ReporteDos(String x) {
+		this.nombrea = x;
+	}
+	
 	public void run() {
 		fuente.setSize(20);
 		fuente1.setColor(0,255,0);
