@@ -1,5 +1,6 @@
 package froms;
 
+import java.awt.Color;
 /**
  * Frame de reportes
  * 
@@ -29,6 +30,11 @@ public class PanelReportes extends Frame {
 	 * Constructor que inicializa el frame con sus atributos
 	 */
 	public PanelReportes() {
+		//Color de BG del Jpanel
+		Color c=new Color(255, 203, 70);
+		panel4.setBackground(c);
+		
+		
 		Font fuente = new Font("Arial", 0, 20);
 		panel4.setLayout(null);
 		//Contraseña de disquera
@@ -36,14 +42,14 @@ public class PanelReportes extends Frame {
 
 		// imagen
 		JLabel lbl19 = new JLabel();
-		lbl19.setIcon(new ImageIcon("src/froms/img.png"));
+		lbl19.setIcon(new ImageIcon("src/img/reportes.png"));
 		lbl19.setBounds(10, 10, 450, 500);
 		panel4.add(lbl19);
 
 		// Titulo
-		JLabel lblT4 = new JLabel("SECCIÓN DE REPORTES ");
-		lblT4.setFont(fuente);
-		lblT4.setBounds(250, 30, 348, 20);
+		JLabel lblT4 = new JLabel();
+		lblT4.setIcon(new ImageIcon("src/img/secciondereportes.png"));
+		lblT4.setBounds(150, 30, 648, 50);
 		panel4.add(lblT4);
 
 		// una etiqueta en el panel de la pestaña 1
