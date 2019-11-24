@@ -34,11 +34,11 @@ public class ReporteDos extends Thread {
         try{
         	System.out.println("Entro");
         Document documento=new Document(PageSize.LETTER);//Crea un objeto
-            PdfWriter.getInstance(documento, new FileOutputStream("C:\\Users\\Liz Jimenez\\Desktop\\RetorteFecha.pdf"));
+            PdfWriter.getInstance(documento, new FileOutputStream("src\\pdfs\\RetorteFecha.pdf"));
             //Crea el Pdf
             documento.open();
            
-            Image imgTre=Image.getInstance("C:\\Users\\Liz Jimenez\\Downloads\\PracticaA7\\PracticaA7\\src\\froms\\Nueva.png");
+            Image imgTre=Image.getInstance("src\\img\\Nueva.png");
             imgTre.scalePercent(68);
             imgTre.setAbsolutePosition(32,680);//Posición
             documento.add(          imgTre);//Agrega otra imagen
@@ -105,7 +105,7 @@ public class ReporteDos extends Thread {
               documento.add(new Paragraph("       "));
               documento.add(new Paragraph("					Cualquier duda o aclaraciòn favor de marcar al numero "
               		+ "5537015892 o bien 5510727166 y enseguida se le atenderà."));
-              Image imgTres=Image.getInstance("C:\\Users\\Liz Jimenez\\Downloads\\PracticaA7\\PracticaA7\\src\\froms\\abajo.png");
+              Image imgTres=Image.getInstance("src\\img\\abajo.png");
               imgTres.scalePercent(68);
               imgTres.setAbsolutePosition(10,1);//Posición
               documento.add(          imgTres);//Agrega otra imagen
