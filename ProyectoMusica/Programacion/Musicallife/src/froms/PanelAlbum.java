@@ -1,5 +1,6 @@
 package froms;
 
+import java.awt.Color;
 /**
  * PanelAlbum, que se integra al Fram Principal
  * 
@@ -8,6 +9,7 @@ package froms;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -20,7 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import clases.Album;
-import conexion.ConexionPostgres;
+import conexion.ConexionPostgresSingleton;
 
 public class PanelAlbum {
 	static JPanel panel3 = new JPanel();
@@ -33,6 +35,7 @@ public class PanelAlbum {
 	JComboBox disq = new JComboBox();
 	JTextField tfGenero = new JTextField("");
 	JTextField tfDuracion = new JTextField("");
+	Connection conn = ConexionPostgresSingleton.getConnection();
 
 	// Variables
 	int id_album, id_art, id_dis;
@@ -43,6 +46,12 @@ public class PanelAlbum {
 
 	public PanelAlbum() {
 		Font fuente = new Font("Arial", 0, 20);
+		//Color de BG del Jpanel
+		Color c=new Color(183, 248, 109);
+		panel3.setBackground(c);
+		
+		llenarArtista();
+		llenarDisquera();
 
 		panel3.setLayout(null);
 
@@ -70,67 +79,17 @@ public class PanelAlbum {
 		JLabel lbl15 = new JLabel("Artista: ");
 		lbl15.setBounds(250, 130, 348, 20);
 		panel3.add(lbl15);
-		artistas.addItem("Seleccionar");
+		//artistas.addItem("Seleccionar");
 		artistas.setBounds(380, 130, 100, 22);
 		panel3.add(artistas);
-		// Boton actualizar artistas
-		JButton btnActualizarArtistas = new JButton("...");
-		btnActualizarArtistas.setBounds(490, 130, 40, 20);
-		panel3.add(btnActualizarArtistas);
-		// Evento llenar artista combo
-		ActionListener llenarArtista = new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				artistas.removeAllItems();
-				try {
-					ConexionPostgres objConexion = new ConexionPostgres();// Crea conexion
-					Statement st = objConexion.getCon().createStatement();
-					String sql = "select artista.nombre_artistico from artista;";
-					ResultSet rs = st.executeQuery(sql);
-					while (rs.next()) {
-						artistas.addItem("Seleccionar");
-						artistas.addItem(rs.getString(1));
-					}
-				} catch (Exception ex) {
-					ex.printStackTrace();
-				}
-			}
-		};
-		// Activacion del evento registro
-		btnActualizarArtistas.addActionListener(llenarArtista);
 
 		// Disquera
 		JLabel lbl16 = new JLabel("Disquera: ");
 		lbl16.setBounds(250, 160, 348, 20);
 		panel3.add(lbl16);
-		disq.addItem("Seleccionar");
+		//disq.addItem("Seleccionar");
 		disq.setBounds(380, 160, 100, 22);
 		panel3.add(disq);
-		// Boton actualizar disquera
-		JButton btnActualizarDisquera = new JButton("...");
-		btnActualizarDisquera.setBounds(490, 160, 40, 20);
-		panel3.add(btnActualizarDisquera);
-		// Evento llenar artista combo
-		ActionListener llenardisquera = new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				disq.removeAllItems();
-				try {
-					ConexionPostgres objConexion = new ConexionPostgres();// Crea conexion
-					Statement st = objConexion.getCon().createStatement();
-					String sql = "select disquera.nombre from disquera;";
-					ResultSet rs = st.executeQuery(sql);
-					while (rs.next()) {
-						disq.addItem("Seleccionar");
-						disq.addItem(rs.getString(1));
-					}
-				} catch (Exception ex) {
-					ex.printStackTrace();
-				}
-			}
-		};
-		// Activacion del evento registro
-		btnActualizarDisquera.addActionListener(llenardisquera);
 
 		// Genero
 		JLabel lbl14 = new JLabel("Género: ");
@@ -271,6 +230,36 @@ public class PanelAlbum {
 		tfNombreAlbum.setText("");
 		tfGenero.setText("");
 		tfDuracion.setText("");
+	}
+	
+	public void llenarArtista() {
+		artistas.removeAllItems();
+		artistas.addItem("Seleccionar");
+		try {
+			Statement st = conn.createStatement();
+			String sql = "select artista.nombre_artistico from artista;";
+			ResultSet rs = st.executeQuery(sql);
+			while (rs.next()) {
+				artistas.addItem(rs.getString(1));
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	public void llenarDisquera() {
+		disq.removeAllItems();
+		disq.addItem("Seleccionar");
+		try {
+			Statement st = conn.createStatement();
+			String sql = "select disquera.nombre from disquera;";
+			ResultSet rs = st.executeQuery(sql);
+			while (rs.next()) {
+				disq.addItem(rs.getString(1));
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
 	}
 
 }

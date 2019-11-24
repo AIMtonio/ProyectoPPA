@@ -49,7 +49,9 @@ public class Principal extends JFrame {
 		panelDePestanas.addTab("Disqueras", null, PanelDisquera.panel2, null);
 // Agregamos panel Album a Frame
 		PanelAlbum obj1 = new PanelAlbum();
+		//obj1.llenarArtista();
 		panelDePestanas.addTab("Álbums", null, PanelAlbum.panel3, null);
+		
 // Agregamos panel Reportes a Frame
 		PanelReportes obj = new PanelReportes();
 		panelDePestanas.addTab("Reportes", null, PanelReportes.panel4, null);
