@@ -6,7 +6,7 @@ import conexion.*;
 import javax.swing.JOptionPane;
 
 
-import conexion.ConexionPostgres;
+import conexion.ConexionPostgres1;
 
 public class Prueba {
 	

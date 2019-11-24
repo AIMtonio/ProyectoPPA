@@ -52,6 +52,7 @@ public class PanelArtista extends JFrame {
 	JRadioButton rbtn1 = new JRadioButton("Masculino", false);
 	JRadioButton rbtn2 = new JRadioButton("Femenino", false);
 	JDateChooser calendario=new JDateChooser();
+	PanelAlbum llenar=new PanelAlbum();
 	
 
 	static JPanel panel1 = new JPanel();
@@ -333,6 +334,7 @@ public class PanelArtista extends JFrame {
 								sexo, formatoFecha());
 						registro.registro();
 						limpiarDatos();
+						llenar.llenarArtista();
 					} else {
 						JOptionPane.showMessageDialog(null, "El nombre artistico ya existe");
 					}
@@ -369,6 +371,7 @@ public class PanelArtista extends JFrame {
 					actualizacion.modifica();
 					limpiarCombo();
 					limpiarDatos();
+					llenar.llenarArtista();
 				}
 			}
 		};
@@ -405,6 +408,7 @@ public class PanelArtista extends JFrame {
 						JOptionPane.showMessageDialog(null, "No se encontro sexo.");
 					}
 					combo.addItem(consultar.getNacionalidad());
+					llenar.llenarArtista();
 				} else {
 					JOptionPane.showMessageDialog(null, "Artista no encontrado");
 				}
@@ -441,6 +445,7 @@ public class PanelArtista extends JFrame {
 							id_artista = eliminar.getId_artista();
 							eliminar.elimina();
 							limpiarDatos();
+							llenar.llenarArtista();
 						}
 					} else {
 					}
@@ -456,6 +461,17 @@ public class PanelArtista extends JFrame {
 				ImageIcon iconLimpiar=new ImageIcon("src/img/limpiar.png");
 				btnLimpiar.setIcon(iconLimpiar);
 				panel1.add(btnLimpiar);
+				
+				// Evento limpiar
+				ActionListener limpiar = new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						limpiarDatos();
+						JOptionPane.showMessageDialog(null, "borrando");
+					}
+				};
+				// Activacion del evento limpiar
+				btnLimpiar.addActionListener(limpiar);
 
 	}
 

@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Calendar;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,6 +18,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import com.toedter.calendar.JDateChooser;
 
 import clases.Disquera;
 
@@ -31,9 +34,8 @@ public class PanelDisquera {
 	JTextField tfDireccion = new JTextField("");
 	JTextField tfTelefono = new JTextField("");
 	JTextField tfCorreo = new JTextField("");
-	JComboBox dia = new JComboBox();
-	JComboBox mes = new JComboBox();
-	JComboBox anio = new JComboBox();
+	JDateChooser calendario=new JDateChooser();
+	PanelAlbum llenar=new PanelAlbum();
 
 	// Variables
 	int id_disquera;
@@ -92,81 +94,9 @@ public class PanelDisquera {
 		panel2.add(tfCorreo);
 
 		// Fecha
-		JLabel lbl11 = new JLabel("Fecha de creación: ");
-		lbl11.setBounds(250, 220, 348, 20);
-		panel2.add(lbl11);
-		JLabel lbld = new JLabel("Día: ");
-		lbld.setBounds(250, 250, 348, 20);
-		panel2.add(lbld);
-
-		dia.addItem("Seleccionar");
-		dia.addItem("1");
-		dia.addItem("2");
-		dia.addItem("3");
-		dia.addItem("4");
-		dia.addItem("5");
-		dia.addItem("6");
-		dia.addItem("7");
-		dia.addItem("8");
-		dia.addItem("9");
-		dia.addItem("10");
-		dia.addItem("11");
-		dia.addItem("12");
-		dia.addItem("13");
-		dia.addItem("14");
-		dia.addItem("15");
-		dia.addItem("16");
-		dia.addItem("17");
-		dia.addItem("18");
-		dia.addItem("19");
-		dia.addItem("20");
-		dia.addItem("21");
-		dia.addItem("22");
-		dia.addItem("23");
-		dia.addItem("23");
-		dia.addItem("24");
-		dia.addItem("25");
-		dia.addItem("26");
-		dia.addItem("27");
-		dia.addItem("28");
-		dia.addItem("29");
-		dia.addItem("30");
-		dia.addItem("31");
-		dia.setBounds(250, 270, 100, 22);
-		panel2.add(dia);
-
-		JLabel lblm = new JLabel("Mes: ");
-		lblm.setBounds(400, 250, 348, 20);
-		panel2.add(lblm);
-
-		mes.addItem("Seleccionar");
-		mes.addItem("01");
-		mes.addItem("02");
-		mes.addItem("03");
-		mes.addItem("04");
-		mes.addItem("05");
-		mes.addItem("06");
-		mes.addItem("07");
-		mes.addItem("08");
-		mes.addItem("09");
-		mes.addItem("10");
-		mes.addItem("11");
-		mes.addItem("12");
-
-		mes.setBounds(400, 270, 100, 22);
-		panel2.add(mes);
-
-		JLabel lbla = new JLabel("Año: ");
-		lbla.setBounds(550, 250, 348, 20);
-		panel2.add(lbla);
-
-		anio.addItem("Seleccionar");
-		anio.addItem("2019");
-		anio.addItem("2020");
-		anio.addItem("2021");
-		anio.addItem("2022");
-		anio.setBounds(550, 270, 100, 22);
-		panel2.add(anio);
+		// Ubicar y agregar al panel
+				calendario.setBounds(380, 280, 280, 20);
+				panel2.add(calendario);
 
 		JButton btnRegistrar = new JButton();
 		btnRegistrar.setBounds(250, 330, 50, 50);
@@ -188,16 +118,14 @@ public class PanelDisquera {
 					direccion = tfDireccion.getText();
 					telefono = Long.parseLong(tfTelefono.getText());
 					correo = tfCorreo.getText();
-					fecha_creacion = (String) anio.getSelectedItem() + "-" + mes.getSelectedItem() + "-"
-							+ dia.getSelectedItem();
-
 					Disquera validar = new Disquera(nombre_d);
 					validar.consultarIdDisquera();
 					id_disquera = validar.getId_disquera();
 					if (id_disquera == 0) {
-						Disquera registro = new Disquera(nombre_d, direccion, correo, fecha_creacion, telefono);
+						Disquera registro = new Disquera(nombre_d, direccion, correo, formatoFecha(), telefono);
 						registro.registro();
 						limpiarDatos();
+						llenar.llenarDisquera();
 					} else {
 						JOptionPane.showMessageDialog(null, "El nombre de la disquera ya existe");
 					}
@@ -230,6 +158,7 @@ public class PanelDisquera {
 					id_disquera = editar.getId_disquera();
 					editar.modifica();
 					limpiarDatos();
+					llenar.llenarDisquera();
 				}
 			}
 		};
@@ -289,6 +218,7 @@ public class PanelDisquera {
 						if (v == 0) {
 							eliminar.elimina();
 							limpiarDatos();
+							llenar.llenarDisquera();
 						}
 
 					}
@@ -304,7 +234,7 @@ public class PanelDisquera {
 		ImageIcon iconLimpiar=new ImageIcon("src/img/limpiar.png");
 		btnLimpiar.setIcon(iconLimpiar);
 		panel2.add(btnLimpiar);
-		// Evento eliminar
+		// Evento limpiar
 		ActionListener limpiar = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -323,6 +253,16 @@ public class PanelDisquera {
 		tfDireccion.setText("");
 		tfTelefono.setText("");
 		tfCorreo.setText("");
+	}
+	
+	public String formatoFecha() {
+		String hola;
+		int mes=0;
+		mes=calendario.getCalendar().get(Calendar.MONTH)+1;
+		hola = Integer.toString(calendario.getCalendar().get(Calendar.YEAR))
+		+ "-" + Integer.toString(mes)
+		+ "-" + Integer.toString(calendario.getCalendar().get(Calendar.DAY_OF_MONTH));
+		return hola;
 	}
 
 }

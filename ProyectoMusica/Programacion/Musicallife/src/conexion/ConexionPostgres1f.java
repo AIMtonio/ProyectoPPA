@@ -9,7 +9,7 @@ package conexion;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class ConexionPostgres {
+public class ConexionPostgres1f {
 	// Variable de clase privada
 	private Connection con;
 	

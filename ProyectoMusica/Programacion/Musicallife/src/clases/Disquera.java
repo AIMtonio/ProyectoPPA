@@ -1,4 +1,5 @@
 package clases;
+
 /**
  * Class Disquera, implementa la interface Interfaz 
  * Para la manipulacion del panelDisquera
@@ -6,13 +7,13 @@ package clases;
  * @author Liz Jimenez & Antonio Alonso
  */
 
+import java.sql.Connection;
 //Importaciones
 import java.sql.ResultSet;
 import java.sql.Statement;
 
 import javax.swing.JOptionPane;
-
-import conexion.ConexionPostgres;
+import conexion.ConexionPostgresSingleton;
 import interfaces.Interfaz;
 
 public class Disquera implements Interfaz {
@@ -21,6 +22,7 @@ public class Disquera implements Interfaz {
 	String nombre_d, direccion, correo;
 	String fecha_creacion;
 	long telefono;
+	Connection conn = ConexionPostgresSingleton.getConnection();
 
 	// Gets
 
@@ -191,8 +193,7 @@ public class Disquera implements Interfaz {
 	 */
 	public void registro() {
 		try {
-			ConexionPostgres objConexion = new ConexionPostgres();
-			Statement st = objConexion.getCon().createStatement();
+			Statement st = conn.createStatement();
 			String sql = "insert into disquera (nombre, direccion, telefono, correo, fecha_creacion)" + " values('"
 					+ nombre_d + "','" + direccion + "'," + telefono + ",'" + correo + "','" + fecha_creacion + "');";
 			st.executeUpdate(sql);
@@ -208,8 +209,7 @@ public class Disquera implements Interfaz {
 	 */
 	public void modifica() {
 		try {
-			ConexionPostgres objConexion = new ConexionPostgres();
-			Statement st = objConexion.getCon().createStatement();
+			Statement st = conn.createStatement();
 			String sql = "update disquera set nombre='" + nombre_d + "'," + " direccion='" + direccion + "', telefono="
 					+ telefono + ", correo='" + correo + "';";
 			st.executeUpdate(sql);
@@ -226,8 +226,7 @@ public class Disquera implements Interfaz {
 
 	public void elimina() {
 		try {
-			ConexionPostgres objConexion = new ConexionPostgres();
-			Statement st = objConexion.getCon().createStatement();
+			Statement st = conn.createStatement();
 			String sql = "delete from disquera where id_disquera = " + id_disquera + ";";
 			st.executeUpdate(sql);
 			JOptionPane.showMessageDialog(null, "Disquera Eliminada");
@@ -243,8 +242,7 @@ public class Disquera implements Interfaz {
 
 	public void consultarDisquera() {
 		try {
-			ConexionPostgres objConexion = new ConexionPostgres();// Crea conexion
-			Statement st = objConexion.getCon().createStatement();
+			Statement st = conn.createStatement();
 			String sql = "Select * from disquera where id_disquera='" + id_disquera + "'";
 			ResultSet rs = st.executeQuery(sql);
 			while (rs.next()) {
@@ -267,8 +265,7 @@ public class Disquera implements Interfaz {
 
 	public void consultarIdDisquera() {
 		try {
-			ConexionPostgres objConexion = new ConexionPostgres();// Crea conexion
-			Statement st = objConexion.getCon().createStatement();
+			Statement st = conn.createStatement();
 			String sql = "Select id_disquera from disquera where nombre='" + nombre_d + "'";
 			ResultSet rs = st.executeQuery(sql);
 			while (rs.next()) {
@@ -282,8 +279,7 @@ public class Disquera implements Interfaz {
 	@Override
 	public void consulta(int id) {
 		try {
-			ConexionPostgres objConexion = new ConexionPostgres();
-			Statement st = objConexion.getCon().createStatement();
+			Statement st =conn.createStatement();
 			String sql = "Select * from disquera where id_disquera='" + id_disquera + "'";
 			ResultSet rs = st.executeQuery(sql);
 			while (rs.next()) {

@@ -6,12 +6,13 @@ package clases;
  * @author Liz Jimenez & Antonio Alonso
  */
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
-import conexion.ConexionPostgres;
+import conexion.*;
 import interfaces.Interfaz;
 
 public class Album implements Interfaz {
@@ -22,6 +23,7 @@ public class Album implements Interfaz {
 	Float duracion;
 	String fecha_lanza;
 	String nombre_album, nombre_artista, nombre_disquera;
+	Connection conn = ConexionPostgresSingleton.getConnection();
 
 	// Gets
 	/**
@@ -241,8 +243,7 @@ public class Album implements Interfaz {
 	 */
 	public void registro() {
 		try {
-			ConexionPostgres objConexion = new ConexionPostgres();
-			Statement st = objConexion.getCon().createStatement();
+			Statement st = conn.createStatement();
 			String sql = "insert into album (nombre, artista, disquera, genero, duracion, fecha_lanzamiento)\r\n"
 					+ "values ('" + nombre_album + "', " + id_art + ", " + id_dis + ", '" + genero + "', " + duracion
 					+ ", CURRENT_DATE);";
@@ -259,8 +260,7 @@ public class Album implements Interfaz {
 	 */
 	public void consulta(int idart) {
 		try {
-			ConexionPostgres objConexion = new ConexionPostgres();// Crea conexion
-			Statement st = objConexion.getCon().createStatement();
+			Statement st = conn.createStatement();
 			String sql = "Select nombre_artistico from artista where id_artista='" + idart + "'";
 			ResultSet rs = st.executeQuery(sql);
 			while (rs.next()) {
@@ -276,8 +276,7 @@ public class Album implements Interfaz {
 	 */
 	public void elimina() {
 		try {
-			ConexionPostgres objConexion = new ConexionPostgres();
-			Statement st = objConexion.getCon().createStatement();
+			Statement st = conn.createStatement();
 			String sql = "delete from album where id_album = " + id_album + ";";
 			st.executeUpdate(sql);
 			JOptionPane.showMessageDialog(null, "Album Eliminado");
@@ -292,8 +291,7 @@ public class Album implements Interfaz {
 	 */
 	public void consultarIdArtista() {
 		try {
-			ConexionPostgres objConexion = new ConexionPostgres();// Crea conexion
-			Statement st = objConexion.getCon().createStatement();
+			Statement st = conn.createStatement();
 			String sql = "Select id_artista from artista where nombre_artistico='" + nombre_artista + "'";
 			ResultSet rs = st.executeQuery(sql);
 			while (rs.next()) {
@@ -310,8 +308,7 @@ public class Album implements Interfaz {
 
 	public void consultarIdDisquera() {
 		try {
-			ConexionPostgres objConexion = new ConexionPostgres();// Crea conexion
-			Statement st = objConexion.getCon().createStatement();
+			Statement st = conn.createStatement();
 			String sql = "Select id_disquera from disquera where nombre='" + nombre_disquera + "'";
 			ResultSet rs = st.executeQuery(sql);
 			while (rs.next()) {
@@ -327,8 +324,7 @@ public class Album implements Interfaz {
 	 */
 	public void consultarIdAlbum() {
 		try {
-			ConexionPostgres objConexion = new ConexionPostgres();// Crea conexion
-			Statement st = objConexion.getCon().createStatement();
+			Statement st = conn.createStatement();
 			String sql = "Select id_album from album where nombre='" + nombre_album + "'";
 			ResultSet rs = st.executeQuery(sql);
 			while (rs.next()) {
@@ -344,8 +340,7 @@ public class Album implements Interfaz {
 	 */
 	public void consultarAlbum() {
 		try {
-			ConexionPostgres objConexion = new ConexionPostgres();// Crea conexion
-			Statement st = objConexion.getCon().createStatement();
+			Statement st = conn.createStatement();
 			String sql = "Select * from album where id_album='" + id_album + "'";
 			ResultSet rs = st.executeQuery(sql);
 			while (rs.next()) {
@@ -371,8 +366,7 @@ public class Album implements Interfaz {
 
 	public void consultarNombreDisquera(int iddi) {
 		try {
-			ConexionPostgres objConexion = new ConexionPostgres();// Crea conexion
-			Statement st = objConexion.getCon().createStatement();
+			Statement st = conn.createStatement();
 			String sql = "Select nombre from disquera where id_disquera='" + iddi + "'";
 			ResultSet rs = st.executeQuery(sql);
 			while (rs.next()) {
