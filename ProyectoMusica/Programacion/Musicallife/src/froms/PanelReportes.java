@@ -31,6 +31,8 @@ public class PanelReportes extends Frame {
 	public PanelReportes() {
 		Font fuente = new Font("Arial", 0, 20);
 		panel4.setLayout(null);
+		//Contraseña de disquera
+		String password = "musicallife";
 
 		// imagen
 		JLabel lbl19 = new JLabel();
@@ -120,14 +122,23 @@ public class PanelReportes extends Frame {
 		// Activacion del evento registro
 		rep.addActionListener(mostrar);
 		
-		
 		ActionListener pdfalbumartista = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String contenido=textoartista.getText();
+				//Obtener Clave
+				boolean security;
+				String op = JOptionPane.showInputDialog("Ingresa contraseña de la disquera para poder crear el reporte: ");
+				if(op.equalsIgnoreCase("musicallife")) {
+					security = true;
+				}else {
+					security = false;
+					JOptionPane.showMessageDialog(null, "Falla de autenficiación. Revisa el Reporte.");
+				}//end if
+				
+				
 				if(contenido!=null) {
-					Reportes objeto=new Reportes(contenido);
-					System.out.println(contenido);
+					Reportes objeto=new Reportes(contenido, security);
 					objeto.start();
 					JOptionPane.showMessageDialog(null, "Se genero el PDF, revisa en el Escritorio de la lap");
 				}else {
@@ -136,7 +147,7 @@ public class PanelReportes extends Frame {
 		}
 		};
 	
-		// Activacion del evento registro
+		// Activacion del evento creacion pdf
 		botonartista.addActionListener(pdfalbumartista);
 			
 		
