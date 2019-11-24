@@ -221,7 +221,6 @@ public class Artista implements Interfaz {
 	 */
 	public void registro() {
 		try {
-			//ConexionPostgres objConexion = new ConexionPostgres();
 			Statement st = conn.createStatement();
 			String sql = "insert into artista (nombre, apellido, nombre_artistico, sexo_artista, fecha_nacimiento,"
 					+ " nacionalidad) values('" + nombre + "','" + apellido + "','" + n_artistico + "','" + sexo + "','"
