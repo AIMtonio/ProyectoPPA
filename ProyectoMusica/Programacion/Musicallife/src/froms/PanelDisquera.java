@@ -9,7 +9,10 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -34,8 +37,8 @@ public class PanelDisquera {
 	JTextField tfDireccion = new JTextField("");
 	JTextField tfTelefono = new JTextField("");
 	JTextField tfCorreo = new JTextField("");
-	JDateChooser calendario=new JDateChooser();
-	PanelAlbum llenar=new PanelAlbum();
+	JDateChooser calendario = new JDateChooser();
+	PanelAlbum llenar = new PanelAlbum();
 
 	// Variables
 	int id_disquera;
@@ -44,11 +47,11 @@ public class PanelDisquera {
 	long telefono;
 
 	public PanelDisquera() {
-		
-		//Colores Panel
-		Color c=new Color(253, 231, 120);
+
+		// Colores Panel
+		Color c = new Color(253, 231, 120);
 		panel2.setBackground(c);
-		
+
 		Font fuente = new Font("Arial", 0, 20);
 		panel2.setLayout(null);
 
@@ -94,13 +97,17 @@ public class PanelDisquera {
 		panel2.add(tfCorreo);
 
 		// Fecha
+		JLabel fecha = new JLabel("Fecha creación: ");
+		fecha.setBounds(250, 230, 348, 20);
+		panel2.add(fecha);
+		
 		// Ubicar y agregar al panel
-				calendario.setBounds(380, 280, 280, 20);
-				panel2.add(calendario);
+		calendario.setBounds(380, 230, 150, 20);
+		panel2.add(calendario);
 
 		JButton btnRegistrar = new JButton();
 		btnRegistrar.setBounds(250, 330, 50, 50);
-		ImageIcon iconRegistro=new ImageIcon("src/img/add.png");
+		ImageIcon iconRegistro = new ImageIcon("src/img/add.png");
 		btnRegistrar.setIcon(iconRegistro);
 		panel2.add(btnRegistrar);
 
@@ -137,7 +144,7 @@ public class PanelDisquera {
 
 		JButton btnEditar = new JButton();
 		btnEditar.setBounds(330, 330, 50, 50);
-		ImageIcon iconEdit=new ImageIcon("src/img/edit.png");
+		ImageIcon iconEdit = new ImageIcon("src/img/edit.png");
 		btnEditar.setIcon(iconEdit);
 		panel2.add(btnEditar);
 
@@ -167,7 +174,7 @@ public class PanelDisquera {
 
 		JButton btnConsultar = new JButton();
 		btnConsultar.setBounds(410, 330, 50, 50);
-		ImageIcon iconConsulta=new ImageIcon("src/img/consulta.png");
+		ImageIcon iconConsulta = new ImageIcon("src/img/consulta.png");
 		btnConsultar.setIcon(iconConsulta);
 		panel2.add(btnConsultar);
 		// Evento consultar
@@ -188,8 +195,16 @@ public class PanelDisquera {
 					String aux = String.valueOf(telefono);
 					tfTelefono.setText(aux);
 					tfCorreo.setText(consulta.getCorreo());
-					// Agregar fecha
-				}
+
+					fecha_creacion = consulta.getFecha_creacion();
+					 try {
+						 SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+					      Date fechaDate = formato.parse(fecha_creacion);
+					      calendario.setDate(fechaDate);
+					      } catch (ParseException ex) {
+					        System.out.println(ex);
+					      }//end catch   
+				}//end else
 			}
 		};
 		// Activacion del evento modificar
@@ -197,7 +212,7 @@ public class PanelDisquera {
 
 		JButton btnEliminar = new JButton();
 		btnEliminar.setBounds(490, 330, 50, 50);
-		ImageIcon iconEliminar=new ImageIcon("src/img/eliminar.png");
+		ImageIcon iconEliminar = new ImageIcon("src/img/eliminar.png");
 		btnEliminar.setIcon(iconEliminar);
 		panel2.add(btnEliminar);
 		// Evento eliminar
@@ -231,7 +246,7 @@ public class PanelDisquera {
 
 		JButton btnLimpiar = new JButton();
 		btnLimpiar.setBounds(570, 330, 50, 50);
-		ImageIcon iconLimpiar=new ImageIcon("src/img/limpiar.png");
+		ImageIcon iconLimpiar = new ImageIcon("src/img/limpiar.png");
 		btnLimpiar.setIcon(iconLimpiar);
 		panel2.add(btnLimpiar);
 		// Evento limpiar
@@ -253,15 +268,15 @@ public class PanelDisquera {
 		tfDireccion.setText("");
 		tfTelefono.setText("");
 		tfCorreo.setText("");
+		calendario.setDate(null);
 	}
-	
+
 	public String formatoFecha() {
 		String hola;
-		int mes=0;
-		mes=calendario.getCalendar().get(Calendar.MONTH)+1;
-		hola = Integer.toString(calendario.getCalendar().get(Calendar.YEAR))
-		+ "-" + Integer.toString(mes)
-		+ "-" + Integer.toString(calendario.getCalendar().get(Calendar.DAY_OF_MONTH));
+		int mes = 0;
+		mes = calendario.getCalendar().get(Calendar.MONTH) + 1;
+		hola = Integer.toString(calendario.getCalendar().get(Calendar.YEAR)) + "-" + Integer.toString(mes) + "-"
+				+ Integer.toString(calendario.getCalendar().get(Calendar.DAY_OF_MONTH));
 		return hola;
 	}
 
