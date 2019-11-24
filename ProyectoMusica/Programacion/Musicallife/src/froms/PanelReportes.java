@@ -10,6 +10,8 @@ import java.awt.Font;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.sql.Date;
 import java.util.Calendar;
 
@@ -90,7 +92,7 @@ public class PanelReportes extends Frame {
 		botoncreacion.setBounds(380, 260, 100, 22);
 		panel4.add(botoncreacion);
 		
-		JButton botonartista = new JButton("Generar PDF");
+		JButton botonartista = new JButton("Generar");
 		botonartista.setBounds(380, 260, 100, 22);
 		panel4.add(botonartista);
 		
@@ -204,6 +206,30 @@ public class PanelReportes extends Frame {
 		// Activacion del evento registro
 		botoncreacion.addActionListener(pdffecha);
 			
+		KeyAdapter objeto2= new  KeyAdapter(){
+			public void keyTyped(KeyEvent evt) {
+				char car = evt.getKeyChar();
+		        if (Character.isLetter(car)) {
+		            //getToolkit().beep();;
+		            evt.consume();
+		            ImageIcon icon=new ImageIcon("src/img/numeros.png");
+		            JOptionPane.showMessageDialog(null, "Solo se permite ingresar numeros", "Advertencia", JOptionPane.PLAIN_MESSAGE, icon);
+		        }
+			}
+		};
+		textocreacion.addKeyListener(objeto2);
+		
+		KeyAdapter objeto= new  KeyAdapter(){
+			public void keyTyped(KeyEvent evt) {
+				char car = evt.getKeyChar();
+		        if (Character.isDigit(car)) {
+		            evt.consume();
+		            ImageIcon icon=new ImageIcon("src/img/letras.png");
+		            JOptionPane.showMessageDialog(null, "Solo se permite ingresar letras", "Advertencia", JOptionPane.PLAIN_MESSAGE, icon);
+		        }
+            }
+		};
+		textoartista.addKeyListener(objeto);
 		
 	}
 	

@@ -31,8 +31,6 @@ import com.toedter.calendar.JDateChooser;
 import clases.Artista;
 
 import java.awt.event.*;
-import java.awt.geom.Area;
-import java.security.KeyRep;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

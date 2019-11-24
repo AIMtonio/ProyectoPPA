@@ -9,6 +9,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -236,8 +238,31 @@ public class PanelAlbum {
 				btnEditar.addActionListener(edit);
 		
 		
-		
-		
+				KeyAdapter objeto= new  KeyAdapter(){
+					public void keyTyped(KeyEvent evt) {
+						char car = evt.getKeyChar();
+				        if (Character.isDigit(car)) {
+				            evt.consume();
+				            ImageIcon icon=new ImageIcon("src/img/letras.png");
+				            JOptionPane.showMessageDialog(null, "Solo se permite ingresar letras", "Advertencia", JOptionPane.PLAIN_MESSAGE, icon);
+				        }
+		            }
+				};
+				tfNombreAlbum.addKeyListener(objeto);
+				tfGenero.addKeyListener(objeto);
+				
+				KeyAdapter objeto2= new  KeyAdapter(){
+					public void keyTyped(KeyEvent evt) {
+						char car = evt.getKeyChar();
+				        if (Character.isLetter(car)) {
+				            //getToolkit().beep();;
+				            evt.consume();
+				            ImageIcon icon=new ImageIcon("src/img/numeros.png");
+				            JOptionPane.showMessageDialog(null, "Solo se permite ingresar numeros", "Advertencia", JOptionPane.PLAIN_MESSAGE, icon);
+				        }
+					}
+				};
+				tfDuracion.addKeyListener(objeto2);
 	}
 
 	/**

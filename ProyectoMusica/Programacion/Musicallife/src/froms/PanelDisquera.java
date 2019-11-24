@@ -8,11 +8,16 @@ import java.awt.Color;
  */
 import java.awt.Font;
 import java.awt.event.ActionEvent;
+import java.awt.event.*;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -114,29 +119,45 @@ public class PanelDisquera {
 		// Evento Registrar
 		ActionListener registrar = new ActionListener() {
 			@Override
+			
 			public void actionPerformed(ActionEvent e) {
 				// Validacion de campos vacios
+				String cel= tfTelefono.getText();
 				if (tfNombre.getText().equalsIgnoreCase("") || tfDireccion.getText().equalsIgnoreCase("")
 						|| tfTelefono.getText().equalsIgnoreCase("") || tfCorreo.getText().equalsIgnoreCase("")) {
 					JOptionPane.showMessageDialog(null, "Falta algun campo por llenar");
-				} else {
-					// Proceso de registro
-					nombre_d = tfNombre.getText();
-					direccion = tfDireccion.getText();
-					telefono = Long.parseLong(tfTelefono.getText());
-					correo = tfCorreo.getText();
-					Disquera validar = new Disquera(nombre_d);
-					validar.consultarIdDisquera();
-					id_disquera = validar.getId_disquera();
-					if (id_disquera == 0) {
-						Disquera registro = new Disquera(nombre_d, direccion, correo, formatoFecha(), telefono);
-						registro.registro();
-						limpiarDatos();
-						llenar.llenarDisquera();
-					} else {
-						JOptionPane.showMessageDialog(null, "El nombre de la disquera ya existe");
-					}
-				}
+				}else if (cel.length() > 10 || cel.length() < 10) {
+                    JOptionPane.showMessageDialog(null, "Formato de telèfono invalido", "Datos erroneos", 0);
+                } else {
+                    Pattern pattern = Pattern
+                            .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                                    + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+                    // El email a validar
+                    String email = tfCorreo.getText();
+                    Matcher mather = pattern.matcher(email);
+                    
+                    if (mather.find() == true) {
+                    	// Proceso de registro
+    					nombre_d = tfNombre.getText();
+    					direccion = tfDireccion.getText();
+    					telefono = Long.parseLong(tfTelefono.getText());
+    					correo = tfCorreo.getText();
+    					Disquera validar = new Disquera(nombre_d);
+    					validar.consultarIdDisquera();
+    					id_disquera = validar.getId_disquera();
+    					if (id_disquera == 0) {
+    						Disquera registro = new Disquera(nombre_d, direccion, correo, formatoFecha(), telefono);
+    						registro.registro();
+    						limpiarDatos();
+    						llenar.llenarDisquera();
+    					} else {
+    						JOptionPane.showMessageDialog(null, "El nombre de la disquera ya existe", "Datos erroneos", 0);
+    					}
+                        
+                    } else {
+                        JOptionPane.showMessageDialog(null, "El email ingresado es inválido.","Datos erroneos", 0);
+                    }
+                }//
 			}
 		};
 		// Activacion del evento registro
@@ -258,6 +279,50 @@ public class PanelDisquera {
 		};
 		// Activacion del evento eliminar
 		btnLimpiar.addActionListener(limpiar);
+		
+
+		KeyAdapter objeto= new  KeyAdapter(){
+			public void keyTyped(KeyEvent evt) {
+				char car = evt.getKeyChar();
+		        if (Character.isDigit(car)) {
+		            //getToolkit().beep();
+		            evt.consume();
+		            ImageIcon icon=new ImageIcon("src/img/letras.png");
+		            JOptionPane.showMessageDialog(null, "Solo se permite ingresar letras", "Advertencia", JOptionPane.PLAIN_MESSAGE, icon);
+		        }
+            }
+		};
+		
+		tfNombre.addKeyListener(objeto);
+		tfDireccion.addKeyListener(objeto);
+		
+		KeyAdapter objeto2= new  KeyAdapter(){
+			public void keyTyped(KeyEvent evt) {
+				char car = evt.getKeyChar();
+		        if (Character.isLetter(car)) {
+		            //getToolkit().beep();;
+		            evt.consume();
+		            ImageIcon icon=new ImageIcon("src/img/numeros.png");
+		            JOptionPane.showMessageDialog(null, "Solo se permite ingresar numeros", "Advertencia", JOptionPane.PLAIN_MESSAGE, icon);
+		        }
+			}
+		};
+		tfTelefono.addKeyListener(objeto2);
+		
+		
+		KeyAdapter objeto3= new  KeyAdapter(){
+			public void keyTyped(KeyEvent evt) {
+				char esp = evt.getKeyChar();
+		        if (Character.isSpace(esp)) {
+		            evt.consume();
+		            ImageIcon icon=new ImageIcon("src/img/espacio1.png");
+		            JOptionPane.showMessageDialog(null, "No se permiten espacios en este campo", "Advertencia", JOptionPane.PLAIN_MESSAGE, icon);
+		            
+		        }
+			}
+		};
+		tfCorreo.addKeyListener(objeto3);
+		tfTelefono.addKeyListener(objeto3);
 	}
 
 	/**
