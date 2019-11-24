@@ -1,21 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
-	<classpathentry kind="src" path="src"/>
-<<<<<<< HEAD
-<<<<<<< HEAD
-	<classpathentry kind="lib" path="C:/Users/Liz Jimenez/Documents/GitHub/ProyectoPPA/ProyectoMusica/Programacion/itextpdf-5.4.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Liz Jimenez/Documents/GitHub/ProyectoPPA/ProyectoMusica/Programacion/jcalendar-1.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Liz Jimenez/Documents/GitHub/ProyectoPPA/ProyectoMusica/Programacion/postgresql-42.2.8.jar"/>
-=======
-	<classpathentry kind="lib" path="C:/Users/anton/Documents/GitHub/ProyectoPPA/ProyectoMusica/Programacion/itextpdf-5.4.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/anton/Documents/GitHub/ProyectoPPA/ProyectoMusica/Programacion/jcalendar-1.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/anton/Documents/GitHub/ProyectoPPA/ProyectoMusica/Programacion/postgresql-42.2.8.jar"/>
->>>>>>> parent of 7aa23f5... Cambios
-=======
-	<classpathentry kind="lib" path="C:/Users/anton/Documents/GitHub/ProyectoPPA/ProyectoMusica/Programacion/itextpdf-5.4.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/anton/Documents/GitHub/ProyectoPPA/ProyectoMusica/Programacion/jcalendar-1.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/anton/Documents/GitHub/ProyectoPPA/ProyectoMusica/Programacion/postgresql-42.2.8.jar"/>
->>>>>>> parent of 7aa23f5... Cambios
-	<classpathentry kind="output" path="bin"/>
-</classpath>
+<? versión xml = " 1.0 " codificación = " UTF-8 " ?>
+< classpath >
+	< classpathentry  kind = " con "  path = " org.eclipse.jdt.launching.JRE_CONTAINER / org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType / JavaSE-1.8 " />
+	< classpathentry  kind = " src "  ruta = " src " />
+	< classpathentry  kind = " lib "  path = " D: / Archivos de programa / Github / ProyectoPPA / ProyectoMusica / Programacion / itextpdf-5.4.0.jar " />
+	< classpathentry  kind = " lib "  path = " D: / Archivos de programa / Github / ProyectoPPA / ProyectoMusica / Programacion / jcalendar-1.4.jar " />
+	< classpathentry  kind = " lib "  path = " D: / Archivos de programa / Github / ProyectoPPA / ProyectoMusica / Programacion / postgresql-42.2.8.jar " />
+	< classpathentry  kind = " output "  path = " bin " />
+</ classpath >
