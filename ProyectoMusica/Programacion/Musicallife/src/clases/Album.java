@@ -1,6 +1,6 @@
 package clases;
 /**
- * Class Disquera 
+ * Class Album 
  * implementa la interface Interfaz
  * 
  * @author Liz Jimenez & Antonio Alonso
@@ -17,10 +17,8 @@ import interfaces.Interfaz;
 import interfaces.Observador;
 
 public class Album implements Interfaz {
-	public void update() {
-		System.out.println("Subir potencia y velocidad");
-		//accion a realiza despues de que se entera que el acelerador esta on
-	}
+
+
 	// Variables de clase
 	int id_album, id_art, id_dis;
 	String genero;
@@ -239,9 +237,9 @@ public class Album implements Interfaz {
 		super();
 		this.nombre_album = nombre_album;
 	}
-	
-	public Album(){
-		
+
+	public Album() {
+
 	}
 
 	// Métodos
@@ -384,7 +382,7 @@ public class Album implements Interfaz {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Método para consultar un album por fecha
 	 */

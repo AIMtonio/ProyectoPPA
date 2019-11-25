@@ -1,10 +1,11 @@
 package froms;
-
 /**
  *Frame Pincipal, que contiene todos los paneles
+ *implementa el patron de diseño FACADE
  *
  *@author Liz Jimenez & Antonio Alonso
  */
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
@@ -60,5 +61,4 @@ public class Facade extends JFrame {
 
 	}
 
-	
 }

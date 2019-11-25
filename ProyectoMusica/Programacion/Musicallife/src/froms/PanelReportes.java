@@ -1,11 +1,11 @@
 package froms;
-
-import java.awt.Color;
 /**
  * Frame de reportes
  * 
  * @author Liz Jimenez & Antonio Alonso
  */
+
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
@@ -14,7 +14,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.Date;
 import java.util.Calendar;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -22,9 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
 import com.toedter.calendar.JDateChooser;
-
 import clases.Album;
 import clases.Artista;
 import clases.ReporteDos;
@@ -33,19 +30,19 @@ import clases.Reportes;
 public class PanelReportes extends Frame {
 	static JPanel panel4 = new JPanel();
 
-	JDateChooser calendario=new JDateChooser();
+	JDateChooser calendario = new JDateChooser();
+
 	/**
 	 * Constructor que inicializa el frame con sus atributos
 	 */
 	public PanelReportes() {
-		//Color de BG del Jpanel
-		Color c=new Color(255, 203, 70);
+		// Color de BG del Jpanel
+		Color c = new Color(255, 203, 70);
 		panel4.setBackground(c);
-		
-		
+
 		Font fuente = new Font("Arial", 0, 20);
 		panel4.setLayout(null);
-		//Contraseña de disquera
+		// Contraseña de disquera
 		String password = "musicallife";
 
 		// imagen
@@ -71,7 +68,7 @@ public class PanelReportes extends Frame {
 		rep.addItem("Albums del Artista");
 		rep.setBounds(380, 130, 150, 22);
 		panel4.add(rep);
-		
+
 		JLabel labelartista = new JLabel("Nombre de artista a buscar: ");
 		labelartista.setBounds(250, 180, 348, 20);
 		panel4.add(labelartista);
@@ -79,7 +76,7 @@ public class PanelReportes extends Frame {
 		JTextField textoartista = new JTextField("");
 		textoartista.setBounds(380, 210, 150, 22);
 		panel4.add(textoartista);
-		
+
 		JLabel labelcreacion = new JLabel("Fecha de creación del album: ");
 		labelcreacion.setBounds(250, 180, 348, 20);
 		panel4.add(labelcreacion);
@@ -87,26 +84,26 @@ public class PanelReportes extends Frame {
 		JTextField textocreacion = new JTextField("");
 		textocreacion.setBounds(380, 210, 150, 22);
 		panel4.add(textocreacion);
-		
+
 		JButton botoncreacion = new JButton("Generar");
 		botoncreacion.setBounds(380, 260, 100, 22);
 		panel4.add(botoncreacion);
-		
+
 		JButton botonartista = new JButton("Generar");
 		botonartista.setBounds(380, 260, 100, 22);
 		panel4.add(botonartista);
-		
+
 		labelartista.setVisible(false);
 		labelcreacion.setVisible(false);
 		textoartista.setVisible(false);
 		textocreacion.setVisible(false);
 		botoncreacion.setVisible(false);
 		botonartista.setVisible(false);
-		
+
 		ActionListener mostrar = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(rep.getSelectedItem().equals("Albums del Artista")) {
+				if (rep.getSelectedItem().equals("Albums del Artista")) {
 					labelartista.setVisible(true);
 					labelcreacion.setVisible(false);
 					textoartista.setVisible(true);
@@ -114,8 +111,8 @@ public class PanelReportes extends Frame {
 					botonartista.setVisible(true);
 					botoncreacion.setVisible(false);
 					calendario.setVisible(false);
-					
-				}else if(rep.getSelectedItem()=="Fecha de creación") {
+
+				} else if (rep.getSelectedItem() == "Fecha de creación") {
 					labelartista.setVisible(false);
 					labelcreacion.setVisible(true);
 					textoartista.setVisible(false);
@@ -126,8 +123,8 @@ public class PanelReportes extends Frame {
 					calendario.setBounds(380, 210, 150, 20);
 					panel4.add(calendario);
 					calendario.setVisible(true);
-					
-				}else if(rep.getSelectedItem()=="Seleccionar") {
+
+				} else if (rep.getSelectedItem() == "Seleccionar") {
 					labelartista.setVisible(false);
 					labelcreacion.setVisible(false);
 					textoartista.setVisible(false);
@@ -136,111 +133,116 @@ public class PanelReportes extends Frame {
 					botonartista.setVisible(false);
 					calendario.setVisible(false);
 				}
-		}
+			}
 		};
-	
+
 		// Activacion del evento registro
 		rep.addActionListener(mostrar);
-		
+
 		ActionListener pdfalbumartista = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String nombreArtista=textoartista.getText();
-				
-				Artista artista=new Artista(nombreArtista);
+				String nombreArtista = textoartista.getText();
+
+				Artista artista = new Artista(nombreArtista);
 				artista.consultarIdArtista();
 				int idArtista = artista.getId_artista();
-				
-				if(textoartista.getText().equalsIgnoreCase("")){
+
+				if (textoartista.getText().equalsIgnoreCase("")) {
 					JOptionPane.showMessageDialog(null, "Ingresa nombre artistico.");
-				}else if(idArtista!=0) {
-					//Obtener Clave
+				} else if (idArtista != 0) {
+					// Obtener Clave
 					boolean security;
-					String op = JOptionPane.showInputDialog("Ingresa contraseña de la disquera para poder crear el reporte: ");
-					if(op.equalsIgnoreCase("musicallife")) {
+					String op = JOptionPane
+							.showInputDialog("Ingresa contraseña de la disquera para poder crear el reporte: ");
+					if (op.equalsIgnoreCase("musicallife")) {
 						security = true;
-					}else {
+					} else {
 						security = false;
 						JOptionPane.showMessageDialog(null, "Falla de autenficiación. Revisa el Reporte.");
-					}//end if
-					Reportes objeto=new Reportes(nombreArtista, security);
+					} // end if
+					Reportes objeto = new Reportes(nombreArtista, security);
 					objeto.start();
 					JOptionPane.showMessageDialog(null, "Se genero correctamente el reporte en PDF");
-					
-				}else {
+
+				} else {
 					JOptionPane.showMessageDialog(null, "El artista no existe");
 				}
-		}
+			}
 		};
-	
+
 		// Activacion del evento creacion pdf
 		botonartista.addActionListener(pdfalbumartista);
-			
-		
+
 		ActionListener pdffecha = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Album album=new Album();
+				Album album = new Album();
 				album.consultaFecha(formatoFecha());
 				int idAlbum = album.getId_album();
-				
-				 if(idAlbum!=0) {
-					
+
+				if (idAlbum != 0) {
+
 					boolean security;
-					String op = JOptionPane.showInputDialog("Ingresa contraseña de la disquera para poder crear el reporte: ");
-					if(op.equalsIgnoreCase("musicallife")) {
+					String op = JOptionPane
+							.showInputDialog("Ingresa contraseña de la disquera para poder crear el reporte: ");
+					if (op.equalsIgnoreCase("musicallife")) {
 						security = true;
-					}else {
+					} else {
 						security = false;
 						JOptionPane.showMessageDialog(null, "Falla de autenficiación. Revisa el Reporte.");
-					}//end if
-					ReporteDos objeto=new ReporteDos(formatoFecha(), security);
+					} // end if
+					ReporteDos objeto = new ReporteDos(formatoFecha(), security);
 					objeto.start();
 					JOptionPane.showMessageDialog(null, "Se genero correctamente el reporte en PDF");
-				}else {
+				} else {
 					JOptionPane.showMessageDialog(null, "No existen albums con esa fecha.");
 				}
-		}
+			}
 		};
-	
+
 		// Activacion del evento registro
 		botoncreacion.addActionListener(pdffecha);
-			
-		KeyAdapter objeto2= new  KeyAdapter(){
+
+		KeyAdapter objeto2 = new KeyAdapter() {
 			public void keyTyped(KeyEvent evt) {
 				char car = evt.getKeyChar();
-		        if (Character.isLetter(car)) {
-		            //getToolkit().beep();;
-		            evt.consume();
-		            ImageIcon icon=new ImageIcon("src/img/numeros.png");
-		            JOptionPane.showMessageDialog(null, "Solo se permite ingresar numeros", "Advertencia", JOptionPane.PLAIN_MESSAGE, icon);
-		        }
+				if (Character.isLetter(car)) {
+					// getToolkit().beep();;
+					evt.consume();
+					ImageIcon icon = new ImageIcon("src/img/numeros.png");
+					JOptionPane.showMessageDialog(null, "Solo se permite ingresar numeros", "Advertencia",
+							JOptionPane.PLAIN_MESSAGE, icon);
+				}
 			}
 		};
 		textocreacion.addKeyListener(objeto2);
-		
-		KeyAdapter objeto= new  KeyAdapter(){
+
+		KeyAdapter objeto = new KeyAdapter() {
 			public void keyTyped(KeyEvent evt) {
 				char car = evt.getKeyChar();
-		        if (Character.isDigit(car)) {
-		            evt.consume();
-		            ImageIcon icon=new ImageIcon("src/img/letras.png");
-		            JOptionPane.showMessageDialog(null, "Solo se permite ingresar letras", "Advertencia", JOptionPane.PLAIN_MESSAGE, icon);
-		        }
-            }
+				if (Character.isDigit(car)) {
+					evt.consume();
+					ImageIcon icon = new ImageIcon("src/img/letras.png");
+					JOptionPane.showMessageDialog(null, "Solo se permite ingresar letras", "Advertencia",
+							JOptionPane.PLAIN_MESSAGE, icon);
+				}
+			}
 		};
 		textoartista.addKeyListener(objeto);
-		
+
 	}
-	
+
+	/**
+	 * Metodo para darle formato a la fecha
+	 */
 	public String formatoFecha() {
 		String hola;
-		int mes=0;
-		mes=calendario.getCalendar().get(Calendar.MONTH)+1;
-		hola = Integer.toString(calendario.getCalendar().get(Calendar.YEAR))
-		+ "-" + Integer.toString(mes)
-		+ "-" + Integer.toString(calendario.getCalendar().get(Calendar.DAY_OF_MONTH));
+		int mes = 0;
+		mes = calendario.getCalendar().get(Calendar.MONTH) + 1;
+		hola = Integer.toString(calendario.getCalendar().get(Calendar.YEAR)) + "-" + Integer.toString(mes) + "-"
+				+ Integer.toString(calendario.getCalendar().get(Calendar.DAY_OF_MONTH));
 		return hola;
-	}//end formatoFecha metodo
-	
+	}// end formatoFecha metodo
+
 }

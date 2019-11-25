@@ -1,11 +1,11 @@
 package froms;
-
-import java.awt.Color;
 /**
  * PanelDisquera, que se integra al Frame Principal
  * 
  * @author Liz Jimenez & Antonio Alonso
  */
+
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.*;
@@ -18,7 +18,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -51,6 +50,9 @@ public class PanelDisquera {
 	String fecha_creacion;
 	long telefono;
 
+	/**
+	 * Constructor que inicializa los componentes
+	 */
 	public PanelDisquera() {
 
 		// Colores Panel
@@ -105,7 +107,7 @@ public class PanelDisquera {
 		JLabel fecha = new JLabel("Fecha creación: ");
 		fecha.setBounds(250, 230, 348, 20);
 		panel2.add(fecha);
-		
+
 		// Ubicar y agregar al panel
 		calendario.setBounds(380, 230, 150, 20);
 		panel2.add(calendario);
@@ -119,45 +121,45 @@ public class PanelDisquera {
 		// Evento Registrar
 		ActionListener registrar = new ActionListener() {
 			@Override
-			
+
 			public void actionPerformed(ActionEvent e) {
 				// Validacion de campos vacios
-				String cel= tfTelefono.getText();
+				String cel = tfTelefono.getText();
 				if (tfNombre.getText().equalsIgnoreCase("") || tfDireccion.getText().equalsIgnoreCase("")
 						|| tfTelefono.getText().equalsIgnoreCase("") || tfCorreo.getText().equalsIgnoreCase("")) {
 					JOptionPane.showMessageDialog(null, "Falta algun campo por llenar");
-				}else if (cel.length() > 10 || cel.length() < 10) {
-                    JOptionPane.showMessageDialog(null, "Formato de telèfono invalido", "Datos erroneos", 0);
-                } else {
-                    Pattern pattern = Pattern
-                            .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-                                    + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
-                    // El email a validar
-                    String email = tfCorreo.getText();
-                    Matcher mather = pattern.matcher(email);
-                    
-                    if (mather.find() == true) {
-                    	// Proceso de registro
-    					nombre_d = tfNombre.getText();
-    					direccion = tfDireccion.getText();
-    					telefono = Long.parseLong(tfTelefono.getText());
-    					correo = tfCorreo.getText();
-    					Disquera validar = new Disquera(nombre_d);
-    					validar.consultarIdDisquera();
-    					id_disquera = validar.getId_disquera();
-    					if (id_disquera == 0) {
-    						Disquera registro = new Disquera(nombre_d, direccion, correo, formatoFecha(), telefono);
-    						registro.registro();
-    						limpiarDatos();
-    						llenar.llenarDisquera();
-    					} else {
-    						JOptionPane.showMessageDialog(null, "El nombre de la disquera ya existe", "Datos erroneos", 0);
-    					}
-                        
-                    } else {
-                        JOptionPane.showMessageDialog(null, "El email ingresado es inválido.","Datos erroneos", 0);
-                    }
-                }//
+				} else if (cel.length() > 10 || cel.length() < 10) {
+					JOptionPane.showMessageDialog(null, "Formato de telèfono invalido", "Datos erroneos", 0);
+				} else {
+					Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+							+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+					// El email a validar
+					String email = tfCorreo.getText();
+					Matcher mather = pattern.matcher(email);
+
+					if (mather.find() == true) {
+						// Proceso de registro
+						nombre_d = tfNombre.getText();
+						direccion = tfDireccion.getText();
+						telefono = Long.parseLong(tfTelefono.getText());
+						correo = tfCorreo.getText();
+						Disquera validar = new Disquera(nombre_d);
+						validar.consultarIdDisquera();
+						id_disquera = validar.getId_disquera();
+						if (id_disquera == 0) {
+							Disquera registro = new Disquera(nombre_d, direccion, correo, formatoFecha(), telefono);
+							registro.registro();
+							limpiarDatos();
+							llenar.llenarDisquera();
+						} else {
+							JOptionPane.showMessageDialog(null, "El nombre de la disquera ya existe", "Datos erroneos",
+									0);
+						}
+
+					} else {
+						JOptionPane.showMessageDialog(null, "El email ingresado es inválido.", "Datos erroneos", 0);
+					}
+				} //
 			}
 		};
 		// Activacion del evento registro
@@ -218,14 +220,14 @@ public class PanelDisquera {
 					tfCorreo.setText(consulta.getCorreo());
 
 					fecha_creacion = consulta.getFecha_creacion();
-					 try {
-						 SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-					      Date fechaDate = formato.parse(fecha_creacion);
-					      calendario.setDate(fechaDate);
-					      } catch (ParseException ex) {
-					        System.out.println(ex);
-					      }//end catch   
-				}//end else
+					try {
+						SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+						Date fechaDate = formato.parse(fecha_creacion);
+						calendario.setDate(fechaDate);
+					} catch (ParseException ex) {
+						System.out.println(ex);
+					} // end catch
+				} // end else
 			}
 		};
 		// Activacion del evento modificar
@@ -279,46 +281,47 @@ public class PanelDisquera {
 		};
 		// Activacion del evento eliminar
 		btnLimpiar.addActionListener(limpiar);
-		
 
-		KeyAdapter objeto= new  KeyAdapter(){
+		KeyAdapter objeto = new KeyAdapter() {
 			public void keyTyped(KeyEvent evt) {
 				char car = evt.getKeyChar();
-		        if (Character.isDigit(car)) {
-		            //getToolkit().beep();
-		            evt.consume();
-		            ImageIcon icon=new ImageIcon("src/img/letras.png");
-		            JOptionPane.showMessageDialog(null, "Solo se permite ingresar letras", "Advertencia", JOptionPane.PLAIN_MESSAGE, icon);
-		        }
-            }
+				if (Character.isDigit(car)) {
+					// getToolkit().beep();
+					evt.consume();
+					ImageIcon icon = new ImageIcon("src/img/letras.png");
+					JOptionPane.showMessageDialog(null, "Solo se permite ingresar letras", "Advertencia",
+							JOptionPane.PLAIN_MESSAGE, icon);
+				}
+			}
 		};
-		
+
 		tfNombre.addKeyListener(objeto);
 		tfDireccion.addKeyListener(objeto);
-		
-		KeyAdapter objeto2= new  KeyAdapter(){
+
+		KeyAdapter objeto2 = new KeyAdapter() {
 			public void keyTyped(KeyEvent evt) {
 				char car = evt.getKeyChar();
-		        if (Character.isLetter(car)) {
-		            //getToolkit().beep();;
-		            evt.consume();
-		            ImageIcon icon=new ImageIcon("src/img/numeros.png");
-		            JOptionPane.showMessageDialog(null, "Solo se permite ingresar numeros", "Advertencia", JOptionPane.PLAIN_MESSAGE, icon);
-		        }
+				if (Character.isLetter(car)) {
+					// getToolkit().beep();;
+					evt.consume();
+					ImageIcon icon = new ImageIcon("src/img/numeros.png");
+					JOptionPane.showMessageDialog(null, "Solo se permite ingresar numeros", "Advertencia",
+							JOptionPane.PLAIN_MESSAGE, icon);
+				}
 			}
 		};
 		tfTelefono.addKeyListener(objeto2);
-		
-		
-		KeyAdapter objeto3= new  KeyAdapter(){
+
+		KeyAdapter objeto3 = new KeyAdapter() {
 			public void keyTyped(KeyEvent evt) {
 				char esp = evt.getKeyChar();
-		        if (Character.isSpace(esp)) {
-		            evt.consume();
-		            ImageIcon icon=new ImageIcon("src/img/espacio1.png");
-		            JOptionPane.showMessageDialog(null, "No se permiten espacios en este campo", "Advertencia", JOptionPane.PLAIN_MESSAGE, icon);
-		            
-		        }
+				if (Character.isSpace(esp)) {
+					evt.consume();
+					ImageIcon icon = new ImageIcon("src/img/espacio1.png");
+					JOptionPane.showMessageDialog(null, "No se permiten espacios en este campo", "Advertencia",
+							JOptionPane.PLAIN_MESSAGE, icon);
+
+				}
 			}
 		};
 		tfCorreo.addKeyListener(objeto3);
@@ -336,6 +339,11 @@ public class PanelDisquera {
 		calendario.setDate(null);
 	}
 
+	/**
+	 * Metodo para dar formato a la fecha
+	 * 
+	 * @return hola
+	 */
 	public String formatoFecha() {
 		String hola;
 		int mes = 0;
