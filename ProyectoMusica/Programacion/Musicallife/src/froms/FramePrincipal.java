@@ -17,6 +17,11 @@ public class FramePrincipal extends JFrame{
 	Facade objeto= new Facade();
 	
 	public FramePrincipal() {
+		String url="\"src/img/album.png\"";
+//		JPanel.setImagen(url);
+		
+		
+		
 		// título de la ventana
 		setTitle("MusicalLife");
 // operación al cerra la ventana 
@@ -64,8 +69,12 @@ public class FramePrincipal extends JFrame{
 	     frame.setVisible(true);
 	    } catch (Exception e) {
 	     e.printStackTrace();
-	    
 	   }
-	  }
+	  }//end Main
+	
+	
+	 
+	 
+	  
 	
 }
