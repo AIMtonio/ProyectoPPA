@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -16,10 +17,9 @@ public class FramePrincipal extends JFrame{
 	Font fuente = new Font("Arial", 0, 20);
 	Facade objeto= new Facade();
 	
+	
 	public FramePrincipal() {
-		String url="\"src/img/album.png\"";
-//		JPanel.setImagen(url);
-		
+	
 		
 		
 		// título de la ventana
@@ -36,18 +36,27 @@ public class FramePrincipal extends JFrame{
 // distribución nula para poder posicionar los elementos
 // en las coordenadas que queramos
 		contentPane.setLayout(null);
-
-		JLabel lbl13 = new JLabel("Bienvenidos a MusicaLife");
-		lbl13.setBounds(270, 100, 348, 20);
+		
+		JLabel lbl13 = new JLabel();
+		lbl13.setIcon(new ImageIcon("src/img/msg.png"));
+		lbl13.setBounds(50, 10, 648, 60);
 		contentPane.add(lbl13);
 
-		JLabel lbl1 = new JLabel("Da click en el boton para poder hacer diferentes funciones");
-		lbl1.setBounds(170, 140, 348, 20);
+		JLabel lbl1 = new JLabel();
+		lbl1.setIcon(new ImageIcon("src/img/logo1.png"));
+		lbl1.setBounds(10, 300, 348, 220);
 		contentPane.add(lbl1);
 
-		JButton btnRegistrar = new JButton("Iniciar");
-		btnRegistrar.setBounds(270, 180, 100, 50);
+		JButton btnRegistrar = new JButton();
+		btnRegistrar.setBounds(270, 180, 180, 50);
+		ImageIcon iconRegistro=new ImageIcon("src/img/iniciar.png");
+		btnRegistrar.setIcon(iconRegistro);
 		contentPane.add(btnRegistrar);
+		
+		JLabel bg = new JLabel();
+		bg.setIcon(new ImageIcon("src/img/BG.png"));
+		bg.setBounds(0, 0, 706, 495);
+		contentPane.add(bg);
 
 		ActionListener edit = new ActionListener() {
 			@Override
