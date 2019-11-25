@@ -1,9 +1,12 @@
 package froms;
-
+/**
+ * From Principal 
+ * 
+ * @author Liz Jimenez & Antonio Alonso
+ */
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -12,10 +15,15 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 public class FramePrincipal extends JFrame{
+	
+	//Variables de clase 
 	protected JPanel contentPane;
 	Font fuente = new Font("Arial", 0, 20);
 	Facade objeto= new Facade();
 	
+	/**
+	 * Constructor que llena el frame 
+	 */
 	public FramePrincipal() {
 		String url="\"src/img/album.png\"";
 //		JPanel.setImagen(url);
@@ -49,6 +57,9 @@ public class FramePrincipal extends JFrame{
 		btnRegistrar.setBounds(270, 180, 100, 50);
 		contentPane.add(btnRegistrar);
 
+		/**
+		 * Evento del boton para acceder a la siguiente ventana
+		 */
 		ActionListener edit = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -61,6 +72,12 @@ public class FramePrincipal extends JFrame{
 
 	}
 	static FramePrincipal frame = new FramePrincipal();
+	
+	/**
+	 * Metodo que ejecuta el from 
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 
 	    try {

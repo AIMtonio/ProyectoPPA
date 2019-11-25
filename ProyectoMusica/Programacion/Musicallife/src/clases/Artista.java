@@ -1,7 +1,4 @@
 package clases;
-
-import java.sql.Connection;
-
 /**
  * Class Artista, implementa la interface Interfaz 
  * Para la manipulacion del panelArtista
@@ -10,6 +7,7 @@ import java.sql.Connection;
  */
 
 //Importaciones 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;

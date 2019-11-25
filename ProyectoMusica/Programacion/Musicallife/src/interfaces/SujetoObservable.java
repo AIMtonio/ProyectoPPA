@@ -1,9 +1,16 @@
- package interfaces;
+package interfaces;
 
+/**
+ * Interface que implementa el patron Observer
+ * 
+ * @author Liz Jimenez & Antonio Alonso
+ */
 public interface SujetoObservable {
-	
-	//SujetoObservable
 
-	public void notificar();//Avisa que se realizo una accion
-	
+	// SujetoObservable
+	/**
+	 * Metodo que Avisa que se realizo una accion
+	 */
+	public void notificar();
+
 }

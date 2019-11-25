@@ -1,11 +1,12 @@
 package froms;
 
-import java.awt.Color;
 /**
  * PanelArtista, que se integra al Frame Principal
  * 
  * @author Liz Jimenez & Antonio Alonso
  */
+import java.awt.Color;
+
 import java.awt.FlowLayout;
 import java.awt.Font;
 
@@ -23,7 +24,6 @@ import javax.swing.JRadioButton;
 import javax.swing.event.ChangeListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
-
 
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
@@ -55,17 +55,19 @@ public class PanelArtista extends JFrame {
 	// Definir Radio buttons
 	JRadioButton rbtn1 = new JRadioButton("Masculino", false);
 	JRadioButton rbtn2 = new JRadioButton("Femenino", false);
-	JDateChooser calendario=new JDateChooser();
-	PanelAlbum llenar=new PanelAlbum();
-	
+	JDateChooser calendario = new JDateChooser();
+	PanelAlbum llenar = new PanelAlbum();
 
 	static JPanel panel1 = new JPanel();
 
+	/**
+	 * Constructor que inicializa los elementotos del Frame
+	 */
 	public PanelArtista() {
-		//Color de BG del Jpanel
-		Color c=new Color(31, 254, 156);
+		// Color de BG del Jpanel
+		Color c = new Color(31, 254, 156);
 		panel1.setBackground(c);
-		
+
 		panel1.setLayout(null);
 		// imagen
 		JLabel lbl0 = new JLabel();
@@ -75,7 +77,7 @@ public class PanelArtista extends JFrame {
 
 		// Titulo
 		Font fuente = new Font("Arial", 0, 20);
-		//JLabel lblT = new JLabel("SECCIÓN DE ARTISTAS ");
+		// JLabel lblT = new JLabel("SECCIÓN DE ARTISTAS ");
 		JLabel lblSeccionArtistas = new JLabel();
 		lblSeccionArtistas.setIcon(new ImageIcon("src/img/secciondeartistas.png"));
 		lblSeccionArtistas.setBounds(150, 30, 648, 50);
@@ -295,13 +297,13 @@ public class PanelArtista extends JFrame {
 		// Ubicar y agregar al panel
 		calendario.setBounds(380, 280, 150, 20);
 		panel1.add(calendario);
-		
+
 		// Boton registrar
-		//JButton btnRegistrar = new JButton("Registrar");
+		// JButton btnRegistrar = new JButton("Registrar");
 		JButton btnRegistrar = new JButton();
-		//btnRegistrar.setBounds(250, 330, 100, 20);
+		// btnRegistrar.setBounds(250, 330, 100, 20);
 		btnRegistrar.setBounds(250, 330, 50, 50);
-		ImageIcon iconRegistro=new ImageIcon("src/img/add.png");
+		ImageIcon iconRegistro = new ImageIcon("src/img/add.png");
 		btnRegistrar.setIcon(iconRegistro);
 		panel1.add(btnRegistrar);
 
@@ -309,8 +311,7 @@ public class PanelArtista extends JFrame {
 		ActionListener registro = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (tfArtista.getText().equalsIgnoreCase("")
-						|| tfApellidos.getText().equalsIgnoreCase("")
+				if (tfArtista.getText().equalsIgnoreCase("") || tfApellidos.getText().equalsIgnoreCase("")
 						|| tfNartistico.getText().equalsIgnoreCase("")) {
 					JOptionPane.showMessageDialog(null, "Algun campo esta vacio");
 				} else {
@@ -329,7 +330,7 @@ public class PanelArtista extends JFrame {
 							sexo = "F";
 						}
 						nacionalidad = (String) combo.getSelectedItem();
-						//fecha_nacimiento = "1998-07-15";
+						// fecha_nacimiento = "1998-07-15";
 						Artista registro = new Artista(nombreArtista, apellidosArtista, nombreArtistico, nacionalidad,
 								sexo, formatoFecha());
 						registro.registro();
@@ -347,7 +348,7 @@ public class PanelArtista extends JFrame {
 		// Boton modificar
 		JButton btnEditar = new JButton();
 		btnEditar.setBounds(330, 330, 50, 50);
-		ImageIcon iconEdit=new ImageIcon("src/img/edit.png");
+		ImageIcon iconEdit = new ImageIcon("src/img/edit.png");
 		btnEditar.setIcon(iconEdit);
 		panel1.add(btnEditar);
 
@@ -381,7 +382,7 @@ public class PanelArtista extends JFrame {
 		// Boton consulta
 		JButton btnConsultar = new JButton();
 		btnConsultar.setBounds(410, 330, 50, 50);
-		ImageIcon iconConsulta=new ImageIcon("src/img/consulta.png");
+		ImageIcon iconConsulta = new ImageIcon("src/img/consulta.png");
 		btnConsultar.setIcon(iconConsulta);
 		panel1.add(btnConsultar);
 
@@ -409,16 +410,16 @@ public class PanelArtista extends JFrame {
 					}
 					combo.addItem(consultar.getNacionalidad());
 					llenar.llenarArtista();
-					
+
 					fecha_nacimiento = consultar.getFecha_nac();
-					
-					 try {
-						 SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-					      Date fechaDate = formato.parse(fecha_nacimiento);
-					      calendario.setDate(fechaDate);
-					      } catch (ParseException ex) {
-					        System.out.println(ex);
-					      }   
+
+					try {
+						SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+						Date fechaDate = formato.parse(fecha_nacimiento);
+						calendario.setDate(fechaDate);
+					} catch (ParseException ex) {
+						System.out.println(ex);
+					}
 				} else {
 					JOptionPane.showMessageDialog(null, "Artista no encontrado");
 				}
@@ -430,7 +431,7 @@ public class PanelArtista extends JFrame {
 		// Boton eliminar
 		JButton btnEliminar = new JButton();
 		btnEliminar.setBounds(490, 330, 50, 50);
-		ImageIcon iconEliminar=new ImageIcon("src/img/eliminar.png");
+		ImageIcon iconEliminar = new ImageIcon("src/img/eliminar.png");
 		btnEliminar.setIcon(iconEliminar);
 		panel1.add(btnEliminar);
 
@@ -464,39 +465,39 @@ public class PanelArtista extends JFrame {
 		};
 		// Activacion del evento eliminar
 		btnEliminar.addActionListener(eliminar);
-		
+
 		// Boton limpiar
-				JButton btnLimpiar = new JButton();
-				btnLimpiar.setBounds(570, 330, 50, 50);
-				ImageIcon iconLimpiar=new ImageIcon("src/img/limpiar.png");
-				btnLimpiar.setIcon(iconLimpiar);
-				panel1.add(btnLimpiar);
-				
-				// Evento limpiar
-				ActionListener limpiar = new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						limpiarDatos();
-					}
-				};
-				// Activacion del evento limpiar
-				btnLimpiar.addActionListener(limpiar);
-				
-				
-				KeyAdapter objeto= new  KeyAdapter(){
-					public void keyTyped(KeyEvent evt) {
-						char car = evt.getKeyChar();
-				        if (Character.isDigit(car)) {
-				            getToolkit().beep();
-				            evt.consume();
-				            ImageIcon icon=new ImageIcon("src/img/letras.png");
-				            JOptionPane.showMessageDialog(null, "Solo se permite ingresar letras", "Advertencia", JOptionPane.PLAIN_MESSAGE, icon);
-				        }
-		            }
-				};
-				tfArtista.addKeyListener(objeto);
-				tfApellidos.addKeyListener(objeto);
-				tfNartistico.addKeyListener(objeto);
+		JButton btnLimpiar = new JButton();
+		btnLimpiar.setBounds(570, 330, 50, 50);
+		ImageIcon iconLimpiar = new ImageIcon("src/img/limpiar.png");
+		btnLimpiar.setIcon(iconLimpiar);
+		panel1.add(btnLimpiar);
+
+		// Evento limpiar
+		ActionListener limpiar = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				limpiarDatos();
+			}
+		};
+		// Activacion del evento limpiar
+		btnLimpiar.addActionListener(limpiar);
+
+		KeyAdapter objeto = new KeyAdapter() {
+			public void keyTyped(KeyEvent evt) {
+				char car = evt.getKeyChar();
+				if (Character.isDigit(car)) {
+					getToolkit().beep();
+					evt.consume();
+					ImageIcon icon = new ImageIcon("src/img/letras.png");
+					JOptionPane.showMessageDialog(null, "Solo se permite ingresar letras", "Advertencia",
+							JOptionPane.PLAIN_MESSAGE, icon);
+				}
+			}
+		};
+		tfArtista.addKeyListener(objeto);
+		tfApellidos.addKeyListener(objeto);
+		tfNartistico.addKeyListener(objeto);
 	}
 
 	/**
@@ -520,26 +521,36 @@ public class PanelArtista extends JFrame {
 		rbtn2.setSelected(false);
 		calendario.setDate(null);
 	}
-	
+
+	/**
+	 * Metodo para el formato de la fecha
+	 * 
+	 * @return hola
+	 */
 	public String formatoFecha() {
 		String hola;
-		int mes=0;
-		mes=calendario.getCalendar().get(Calendar.MONTH)+1;
-		hola = Integer.toString(calendario.getCalendar().get(Calendar.YEAR))
-		+ "-" + Integer.toString(mes)
-		+ "-" + Integer.toString(calendario.getCalendar().get(Calendar.DAY_OF_MONTH));
+		int mes = 0;
+		mes = calendario.getCalendar().get(Calendar.MONTH) + 1;
+		hola = Integer.toString(calendario.getCalendar().get(Calendar.YEAR)) + "-" + Integer.toString(mes) + "-"
+				+ Integer.toString(calendario.getCalendar().get(Calendar.DAY_OF_MONTH));
 		return hola;
-	}//end formatoFecha metodo
-	
-	 public static Date ParseFecha(String fecha){
-	        SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
-	        Date fechaDate = null;
-	        try {
-	            fechaDate = formato.parse(fecha);
-	        } catch (ParseException ex) {
-	            System.out.println(ex);
-	        }
-	        return fechaDate;
-	    }//End ParseFecha metedo
+	}// end formatoFecha metodo
+
+	/**
+	 * Metodo para conversion de fechas
+	 * 
+	 * @param fecha
+	 * @return fechDate
+	 */
+	public static Date ParseFecha(String fecha) {
+		SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
+		Date fechaDate = null;
+		try {
+			fechaDate = formato.parse(fecha);
+		} catch (ParseException ex) {
+			System.out.println(ex);
+		}
+		return fechaDate;
+	}// End ParseFecha metedo
 
 }

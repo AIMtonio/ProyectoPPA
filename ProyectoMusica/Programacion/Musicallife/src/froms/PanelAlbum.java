@@ -1,11 +1,12 @@
 package froms;
 
-import java.awt.Color;
 /**
- * PanelAlbum, que se integra al Fram Principal
+ * PanelAlbum que se ejecuta en la clase facade 
  * 
- * @author Liz Jimenez & Antonio Alonso
+ * @author Liz Jimenez & Antonio Alonso 
  */
+
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,8 +33,7 @@ import conexion.ConexionPostgresSingleton;
 import interfaces.Observador;
 import interfaces.SujetoObservable;
 
-
-public class PanelAlbum{
+public class PanelAlbum {
 	static JPanel panel3 = new JPanel();
 
 	/**
@@ -45,8 +45,6 @@ public class PanelAlbum{
 	JTextField tfGenero = new JTextField("");
 	JTextField tfDuracion = new JTextField("");
 	Connection conn = ConexionPostgresSingleton.getConnection();
-	
-			
 
 	// Variables
 	int id_album, id_art, id_dis;
@@ -54,15 +52,17 @@ public class PanelAlbum{
 	Float duracion;
 	String fecha_lanza;
 	String nombre_album, nombre_artista, nombre_disquera;
-	
 
+	/**
+	 * Constructor que inicaliza los elementos
+	 */
 	public PanelAlbum() {
-		
+
 		Font fuente = new Font("Arial", 0, 20);
-		//Color de BG del Jpanel
-		Color c=new Color(183, 248, 109);
+		// Color de BG del Jpanel
+		Color c = new Color(183, 248, 109);
 		panel3.setBackground(c);
-		
+
 		llenarArtista();
 		llenarDisquera();
 
@@ -92,7 +92,7 @@ public class PanelAlbum{
 		JLabel lbl15 = new JLabel("Artista: ");
 		lbl15.setBounds(250, 130, 348, 20);
 		panel3.add(lbl15);
-		//artistas.addItem("Seleccionar");
+		// artistas.addItem("Seleccionar");
 		artistas.setBounds(380, 130, 100, 22);
 		panel3.add(artistas);
 
@@ -100,7 +100,7 @@ public class PanelAlbum{
 		JLabel lbl16 = new JLabel("Disquera: ");
 		lbl16.setBounds(250, 160, 348, 20);
 		panel3.add(lbl16);
-		//disq.addItem("Seleccionar");
+		// disq.addItem("Seleccionar");
 		disq.setBounds(380, 160, 100, 22);
 		panel3.add(disq);
 
@@ -121,7 +121,7 @@ public class PanelAlbum{
 		// Boton registrar
 		JButton btnRegistrar = new JButton();
 		btnRegistrar.setBounds(250, 330, 50, 50);
-		ImageIcon iconRegistro=new ImageIcon("src/img/add.png");
+		ImageIcon iconRegistro = new ImageIcon("src/img/add.png");
 		btnRegistrar.setIcon(iconRegistro);
 		panel3.add(btnRegistrar);
 		// Evento registrar
@@ -147,17 +147,17 @@ public class PanelAlbum{
 					registro.registro();
 					limpiarCombos();
 					limparDatos();
-					
+
 					java.util.Date fecha = new Date();
-					
+
 					ObservadorBase patron = new ObservadorBase();
-					
-					ClienteObservador x= new ClienteObservador("Registro album", fecha.toString());
-					
+
+					ClienteObservador x = new ClienteObservador("Registro album", fecha.toString());
+
 					x.enlazarObservador(patron);
-					
+
 					x.despertador();
-					
+
 					llenarArtista();
 					llenarDisquera();
 				}
@@ -169,7 +169,7 @@ public class PanelAlbum{
 		// Boton consultar
 		JButton btnConsultar = new JButton();
 		btnConsultar.setBounds(330, 330, 50, 50);
-		ImageIcon iconConsulta=new ImageIcon("src/img/consulta.png");
+		ImageIcon iconConsulta = new ImageIcon("src/img/consulta.png");
 		btnConsultar.setIcon(iconConsulta);
 		panel3.add(btnConsultar);
 		// Evento consultar
@@ -214,7 +214,7 @@ public class PanelAlbum{
 		// Boton eliminar
 		JButton btnEliminar = new JButton();
 		btnEliminar.setBounds(410, 330, 50, 50);
-		ImageIcon iconEliminar=new ImageIcon("src/img/eliminar.png");
+		ImageIcon iconEliminar = new ImageIcon("src/img/eliminar.png");
 		btnEliminar.setIcon(iconEliminar);
 		panel3.add(btnEliminar);
 		// Evento registrar
@@ -243,50 +243,51 @@ public class PanelAlbum{
 		};
 		// Activacion del evento registro
 		btnEliminar.addActionListener(eliminar);
-		
-			// Boton modificar
-				JButton btnEditar = new JButton();
-				btnEditar.setBounds(490, 330, 50, 50);
-				ImageIcon iconEditar=new ImageIcon("src/img/edit.png");
-				btnEditar.setIcon(iconEditar);
-				panel3.add(btnEditar);
-		
-				// Evento modificar
-				ActionListener edit = new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						JOptionPane.showMessageDialog(null, "No aplica porque un album no se puede modificar una vez creado");
-					}
-				};
-				// Activacion del evento edit
-				btnEditar.addActionListener(edit);
-		
-		
-				KeyAdapter objeto= new  KeyAdapter(){
-					public void keyTyped(KeyEvent evt) {
-						char car = evt.getKeyChar();
-				        if (Character.isDigit(car)) {
-				            evt.consume();
-				            ImageIcon icon=new ImageIcon("src/img/letras.png");
-				            JOptionPane.showMessageDialog(null, "Solo se permite ingresar letras", "Advertencia", JOptionPane.PLAIN_MESSAGE, icon);
-				        }
-		            }
-				};
-				tfNombreAlbum.addKeyListener(objeto);
-				tfGenero.addKeyListener(objeto);
-				
-				KeyAdapter objeto2= new  KeyAdapter(){
-					public void keyTyped(KeyEvent evt) {
-						char car = evt.getKeyChar();
-				        if (Character.isLetter(car)) {
-				            //getToolkit().beep();;
-				            evt.consume();
-				            ImageIcon icon=new ImageIcon("src/img/numeros.png");
-				            JOptionPane.showMessageDialog(null, "Solo se permite ingresar numeros", "Advertencia", JOptionPane.PLAIN_MESSAGE, icon);
-				        }
-					}
-				};
-				tfDuracion.addKeyListener(objeto2);
+
+		// Boton modificar
+		JButton btnEditar = new JButton();
+		btnEditar.setBounds(490, 330, 50, 50);
+		ImageIcon iconEditar = new ImageIcon("src/img/edit.png");
+		btnEditar.setIcon(iconEditar);
+		panel3.add(btnEditar);
+
+		// Evento modificar
+		ActionListener edit = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "No aplica porque un album no se puede modificar una vez creado");
+			}
+		};
+		// Activacion del evento edit
+		btnEditar.addActionListener(edit);
+
+		KeyAdapter objeto = new KeyAdapter() {
+			public void keyTyped(KeyEvent evt) {
+				char car = evt.getKeyChar();
+				if (Character.isDigit(car)) {
+					evt.consume();
+					ImageIcon icon = new ImageIcon("src/img/letras.png");
+					JOptionPane.showMessageDialog(null, "Solo se permite ingresar letras", "Advertencia",
+							JOptionPane.PLAIN_MESSAGE, icon);
+				}
+			}
+		};
+		tfNombreAlbum.addKeyListener(objeto);
+		tfGenero.addKeyListener(objeto);
+
+		KeyAdapter objeto2 = new KeyAdapter() {
+			public void keyTyped(KeyEvent evt) {
+				char car = evt.getKeyChar();
+				if (Character.isLetter(car)) {
+					// getToolkit().beep();;
+					evt.consume();
+					ImageIcon icon = new ImageIcon("src/img/numeros.png");
+					JOptionPane.showMessageDialog(null, "Solo se permite ingresar numeros", "Advertencia",
+							JOptionPane.PLAIN_MESSAGE, icon);
+				}
+			}
+		};
+		tfDuracion.addKeyListener(objeto2);
 	}
 
 	/**
@@ -307,7 +308,10 @@ public class PanelAlbum{
 		tfGenero.setText("");
 		tfDuracion.setText("");
 	}
-	
+
+	/**
+	 * Metodo para llenar el artista
+	 */
 	public void llenarArtista() {
 		artistas.removeAllItems();
 		artistas.addItem("Seleccionar");
@@ -322,7 +326,10 @@ public class PanelAlbum{
 			ex.printStackTrace();
 		}
 	}
-	
+
+	/**
+	 * Metodo para llenar el combo disquera
+	 */
 	public void llenarDisquera() {
 		disq.removeAllItems();
 		disq.addItem("Seleccionar");
@@ -337,7 +344,5 @@ public class PanelAlbum{
 			ex.printStackTrace();
 		}
 	}
-	
-	
 
 }

@@ -279,7 +279,7 @@ public class Disquera implements Interfaz {
 	@Override
 	public void consulta(int id) {
 		try {
-			Statement st =conn.createStatement();
+			Statement st = conn.createStatement();
 			String sql = "Select * from disquera where id_disquera='" + id_disquera + "'";
 			ResultSet rs = st.executeQuery(sql);
 			while (rs.next()) {
