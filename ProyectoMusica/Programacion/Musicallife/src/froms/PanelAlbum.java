@@ -14,6 +14,8 @@ import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -24,9 +26,14 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import clases.Album;
+import clases.ClienteObservador;
+import clases.ObservadorBase;
 import conexion.ConexionPostgresSingleton;
+import interfaces.Observador;
+import interfaces.SujetoObservable;
 
-public class PanelAlbum {
+
+public class PanelAlbum{
 	static JPanel panel3 = new JPanel();
 
 	/**
@@ -38,6 +45,8 @@ public class PanelAlbum {
 	JTextField tfGenero = new JTextField("");
 	JTextField tfDuracion = new JTextField("");
 	Connection conn = ConexionPostgresSingleton.getConnection();
+	
+			
 
 	// Variables
 	int id_album, id_art, id_dis;
@@ -45,8 +54,10 @@ public class PanelAlbum {
 	Float duracion;
 	String fecha_lanza;
 	String nombre_album, nombre_artista, nombre_disquera;
+	
 
 	public PanelAlbum() {
+		
 		Font fuente = new Font("Arial", 0, 20);
 		//Color de BG del Jpanel
 		Color c=new Color(183, 248, 109);
@@ -136,6 +147,19 @@ public class PanelAlbum {
 					registro.registro();
 					limpiarCombos();
 					limparDatos();
+					
+					java.util.Date fecha = new Date();
+					
+					ObservadorBase patron = new ObservadorBase();
+					
+					ClienteObservador x= new ClienteObservador("Registro album", fecha.toString());
+					
+					x.enlazarObservador(patron);
+					
+					x.despertador();
+					
+					llenarArtista();
+					llenarDisquera();
 				}
 			}
 		};
@@ -313,5 +337,7 @@ public class PanelAlbum {
 			ex.printStackTrace();
 		}
 	}
+	
+	
 
 }

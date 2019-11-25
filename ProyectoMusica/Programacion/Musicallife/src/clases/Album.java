@@ -16,7 +16,7 @@ import conexion.*;
 import interfaces.Interfaz;
 import interfaces.Observador;
 
-public class Album implements Interfaz, Observador {
+public class Album implements Interfaz {
 	public void update() {
 		System.out.println("Subir potencia y velocidad");
 		//accion a realiza despues de que se entera que el acelerador esta on

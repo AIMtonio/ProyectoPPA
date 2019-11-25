@@ -10,7 +10,7 @@ public class Correr {
 		Acelerador x= new Acelerador();
 		
 		x.enlazarObservador(v8);
-		x.enlazarObservador(v8);
+		//x.enlazarObservador(v8);
 		
 		x.pisarAcelerador();
 		
