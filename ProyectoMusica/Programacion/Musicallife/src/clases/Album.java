@@ -14,9 +14,13 @@ import javax.swing.JOptionPane;
 
 import conexion.*;
 import interfaces.Interfaz;
+import interfaces.Observador;
 
-public class Album implements Interfaz {
-
+public class Album implements Interfaz, Observador {
+	public void update() {
+		System.out.println("Subir potencia y velocidad");
+		//accion a realiza despues de que se entera que el acelerador esta on
+	}
 	// Variables de clase
 	int id_album, id_art, id_dis;
 	String genero;
