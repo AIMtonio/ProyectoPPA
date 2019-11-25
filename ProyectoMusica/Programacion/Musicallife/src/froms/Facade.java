@@ -11,14 +11,19 @@ import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-public class Principal extends JFrame {
+public class Facade extends JFrame {
 
 	protected JPanel contentPane;
+	PanelArtista artista = new PanelArtista();
+	PanelDisquera disq = new PanelDisquera();
+	PanelAlbum obj1 = new PanelAlbum();
+	PanelReportes obj = new PanelReportes();
 
 	/**
 	 * Constructor que inicializa el Frame, lo abre y contiene los paneles
 	 */
-	public Principal() {
+
+	public Facade() {
 
 // título de la ventana
 		setTitle("MusicalLife");
@@ -40,33 +45,20 @@ public class Principal extends JFrame {
 // se posiciona en el panel
 		panelDePestanas.setBounds(10, 11, 679, 464);
 		contentPane.add(panelDePestanas);
+		// Agregamos panel Artista a Frame
 
-//Agregamos panel Artista a Frame
-		PanelArtista artista = new PanelArtista();
 		panelDePestanas.addTab("Artistas", null, PanelArtista.panel1, null);
-// Agregamos panel disquera a Frame
-		PanelDisquera disq = new PanelDisquera();
+		// Agregamos panel disquera a Frame
+
 		panelDePestanas.addTab("Disqueras", null, PanelDisquera.panel2, null);
-// Agregamos panel Album a Frame
-		PanelAlbum obj1 = new PanelAlbum();
-		//obj1.llenarArtista();
+		// Agregamos panel Album a Frame
+
 		panelDePestanas.addTab("Álbums", null, PanelAlbum.panel3, null);
-		
-// Agregamos panel Reportes a Frame
-		PanelReportes obj = new PanelReportes();
+		// Agregamos panel Reportes a Frame
+
 		panelDePestanas.addTab("Reportes", null, PanelReportes.panel4, null);
 
 	}
-	
-	public static void main(String[] args) {
 
-	    try {
-	     // creando el frame y lo muestra
-	     Principal frame = new Principal();
-	     frame.setVisible(true);
-	    } catch (Exception e) {
-	     e.printStackTrace();
-	    
-	   }
-	  }
+	
 }
